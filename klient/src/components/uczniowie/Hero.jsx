@@ -1,5 +1,6 @@
 import React from 'react'
 import { assets } from '../../assets/assets'
+import PasekWyszukiwania from './PasekWyszukiwania'
 
 const Hero = () => {
   return (
@@ -11,6 +12,7 @@ const Hero = () => {
       <p className='md:block hidden text-gray-500 max-w-2x1 mx-auto'></p>
 
       <p className='md:block hidden text-gray-500 max-w-2x1 mx-auto'></p>
+      <PasekWyszukiwania />
     </div>
   )
 }
