@@ -1,4 +1,4 @@
-import { createContext } from "react";  
+import { createContext, useEffect } from "react";  
 import { dummyCourses } from "../assets/assets";
 
 export const AppContext = createContext(); 
@@ -19,6 +19,10 @@ export const AppContextProvider = (props) => {
             console.error(error);
         }
     };
+
+    useEffect(() => {
+        fetchAllCourses();
+    }, []);
 
     const value = { currency, allCourses, fetchAllCourses };
 
