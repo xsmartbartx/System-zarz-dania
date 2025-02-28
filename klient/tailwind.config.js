@@ -10,6 +10,10 @@ export default {
       'home-heading-large' : ['48px', '56px'],
       'default': ['15px', '21px'],
     },
+    gridTemplateColumns: {
+      'auto': 'repeat(auto-fill, minmax(250px, 1fr))',
+      'course-card': 'repeat(auto-fill, minmax(250px, 1fr))',
+    },
   },
   plugins: [],
 };
