@@ -7,7 +7,7 @@ import { AppContext } from '../../context/AppContext'
 
 const Navbar = () => {
 
-  const { navigate } = useContext(AppContext);
+  const { navigate, isNauczyciel} = useContext(AppContext);
 
   const isCourseListPage = location.pathname.includes ('/course-list'); 
 
@@ -18,11 +18,11 @@ const Navbar = () => {
     <div className={`flex justify-between items-center px-4 sm:px-10 md:px-14
     lg:px-36 border-b border-gray-500 py-4 ${isCourseListPage ? 'bg-white' :
     'bg-cyan-100/70'}`}>
-      <img src={assets.logo} alt="Logo" className='w-28 lg:w-32 cursor-pointer' />
+      <img onClick={()=> navigate('/')} src={assets.logo} alt="Logo" className='w-28 lg:w-32 cursor-pointer' />
       <div className='hidden md:flex items-center gap-5 text-gray-500'>
           <div className='flex items-center gap-5'>
             {user && <>
-              <button>Zostań Nauczcycielem</button>
+              <button onClick={()=> {navigate('/nauczyciel')}}>{isNauczyciel ? 'Panel Nauczyciela' : 'Zostań Nauczycielem'}</button>
             <Link to='/zapisy'>Zapisy</Link>
             </>
             }
@@ -35,7 +35,7 @@ const Navbar = () => {
         <div className='flex items-center gap-1 sm:gap-2 max-sm:text-xs'>
           {user && 
             <>
-                <button>Zostań Nauczycielem</button>
+              <button onClick={()=> {navigate('/nauczyciel')}}>{isNauczyciel ? 'Panel Nauczyciela' : 'Zostań Nauczycielem'}</button>
               <Link to='/zapisy'>Moje Zapisy</Link>
             </>
             }
