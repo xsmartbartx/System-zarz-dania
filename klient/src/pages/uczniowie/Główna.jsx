@@ -2,6 +2,7 @@ import React from 'react'
 import Hero from '../../components/uczniowie/Hero'
 import Companies from '../../components/uczniowie/Companies'
 import CourseSection from '../../components/uczniowie/CourseSection'
+import Referencje from '../../components/uczniowie/Referencje'
 
 const Główna = () => {
   return (
@@ -9,6 +10,7 @@ const Główna = () => {
       <Hero />
       <Companies />
       <CourseSection />
+      <Referencje />
     </div>
   )
 }
