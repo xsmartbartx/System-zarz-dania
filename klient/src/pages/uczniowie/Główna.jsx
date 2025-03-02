@@ -3,6 +3,7 @@ import Hero from '../../components/uczniowie/Hero'
 import Companies from '../../components/uczniowie/Companies'
 import CourseSection from '../../components/uczniowie/CourseSection'
 import Referencje from '../../components/uczniowie/Referencje'
+import CallToAction from '../../components/uczniowie/CallToAction'
 
 const Główna = () => {
   return (
@@ -11,6 +12,7 @@ const Główna = () => {
       <Companies />
       <CourseSection />
       <Referencje />
+      <CallToAction />
     </div>
   )
 }
