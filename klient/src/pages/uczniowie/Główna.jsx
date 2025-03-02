@@ -4,6 +4,7 @@ import Companies from '../../components/uczniowie/Companies'
 import CourseSection from '../../components/uczniowie/CourseSection'
 import Referencje from '../../components/uczniowie/Referencje'
 import CallToAction from '../../components/uczniowie/CallToAction'
+import Footer from '../../components/uczniowie/Footer'
 
 const Główna = () => {
   return (
@@ -13,6 +14,7 @@ const Główna = () => {
       <CourseSection />
       <Referencje />
       <CallToAction />
+      <Footer />
     </div>
   )
 }
