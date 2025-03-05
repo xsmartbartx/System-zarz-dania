@@ -29,7 +29,7 @@ const CourseDetails = () => {
 
       <div>
         <h1>{courseData.courseTitle}</h1>
-        <p>{courseData.coursedescription}</p>
+        <p>{courseData.courseDescription}</p>
       </div>
 
       <div></div>
