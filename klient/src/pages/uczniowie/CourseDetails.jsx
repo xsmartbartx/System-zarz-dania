@@ -33,6 +33,19 @@ const CourseDetails = () => {
           {courseData.courseTitle}</h1>
         <p className='text-sm md:text-base mt-4'
          dangerouslySetInnerHTML={{__html: courseData.courseDescription.slice(0,200)}}></p>
+      
+              <div className='flex items-center space-x-2'>
+                <p>{calculateRating(course)}</p>
+                <div className='flex space-x-1'>
+                  {[...Array(5)].map((_, i)=>(<img key={i} src={i 
+                  <Math.floor(calculateRating(course)) ? assets.star : assets.star_blank }
+                   alt='' className='w-3.5 h-3.5'/>
+                  ))}
+                </div>
+                <p className='text-gray-500'>{course.courseRatings.length}</p>
+              </div>
+      
+      
       </div>
 
       <div></div>
