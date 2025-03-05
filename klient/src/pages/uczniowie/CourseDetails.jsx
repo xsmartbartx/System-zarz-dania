@@ -27,9 +27,11 @@ const CourseDetails = () => {
       
       <div className='absolute top-0 left-0 w-full h-section-height'></div>
 
-      <div>
-        <h1>{courseData.courseTitle}</h1>
-        <p>{courseData.courseDescription}</p>
+      <div className='container mx-auto p-4 text-gray-500'>
+        <h1 className='md:text-course-details-heading-large
+         text-course-details-heading-small font-semibold text-gray-800'>
+          {courseData.courseTitle}</h1>
+        <p dangerouslySetInnerHTML={{__html: courseData.courseDescription.slice(0,200)}}></p>
       </div>
 
       <div></div>
