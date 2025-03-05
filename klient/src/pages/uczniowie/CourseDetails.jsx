@@ -31,7 +31,8 @@ const CourseDetails = () => {
         <h1 className='md:text-course-details-heading-large
          text-course-details-heading-small font-semibold text-gray-800'>
           {courseData.courseTitle}</h1>
-        <p dangerouslySetInnerHTML={{__html: courseData.courseDescription.slice(0,200)}}></p>
+        <p className='text-sm md:text-base mt-4'
+         dangerouslySetInnerHTML={{__html: courseData.courseDescription.slice(0,200)}}></p>
       </div>
 
       <div></div>
