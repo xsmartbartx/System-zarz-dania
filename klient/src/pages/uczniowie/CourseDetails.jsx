@@ -46,8 +46,12 @@ const CourseDetails = () => {
                 <p className='text-gray-500'>{courseData.courseRatings.length} {courseData.courseRatings.length > 1 ? 'ratings' : 'rating'}</p>
               </div>
       
-              <p>{courseData.zapisaniUczniowie.length}</p>
+              <p>{courseData.zapisaniUczniowie.length} {courseData.zapisaniUczniowie.length
+              > 1 ? 'uczniowie': 'uczeń'}</p>
       </div>
+
+      <p className='text-sm'>Kurs zrobiony przez:<span className='text-blue-underline'>MiejskiSurfer</span></p>
+
 
       <div></div>
 
