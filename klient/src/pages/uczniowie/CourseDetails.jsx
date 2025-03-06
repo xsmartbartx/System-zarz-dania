@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useContext } from 'react'
 import { AppContext } from '../../context/AppContext'
 import Ładowanie from '../../components/Ładowanie'
+import { assets } from '../../assets/assets'
 
 const CourseDetails = () => {
 
@@ -10,7 +11,7 @@ const CourseDetails = () => {
 
   const [courseData, setCourseData] = useState(null);
 
-  const {allCourses} = useContext(AppContext);
+  const {allCourses, calculateRating} = useContext(AppContext);
 
   const fetchCourseData = async () => {
     const findCourse = allCourses.find(course => course._id === id)
@@ -35,17 +36,17 @@ const CourseDetails = () => {
          dangerouslySetInnerHTML={{__html: courseData.courseDescription.slice(0,200)}}></p>
       
               <div className='flex items-center space-x-2'>
-                <p>{calculateRating(course)}</p>
+                <p>{calculateRating(courseData)}</p>
                 <div className='flex space-x-1'>
                   {[...Array(5)].map((_, i)=>(<img key={i} src={i 
-                  <Math.floor(calculateRating(course)) ? assets.star : assets.star_blank }
+                  <Math.floor(calculateRating(courseData)) ? assets.star : assets.star_blank }
                    alt='' className='w-3.5 h-3.5'/>
                   ))}
                 </div>
-                <p className='text-gray-500'>{course.courseRatings.length}</p>
+                <p className='text-gray-500'>{courseData.courseRatings.length} {courseData.courseRatings.length > 1 ? 'ratings' : 'rating'}</p>
               </div>
       
-      
+              <p>{courseData.zapisaniUczniowie.length}</p>
       </div>
 
       <div></div>
