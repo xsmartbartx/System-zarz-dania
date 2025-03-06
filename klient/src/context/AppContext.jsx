@@ -48,7 +48,14 @@ export const AppContextProvider = (props) => {
         return humanizeDuration(time * 60 * 1000, { units: ['g', 'm'],});
 
 
-        
+    const calculateNoOfLectures = (course) => {
+        let totalLectures = 0;
+        course.courseContent.forEach(chapter) => {
+            if (Array.isArray(chapter.chapterContent))
+                {totalLectures += chapter.chapterContent.length}
+        });
+        return totalLectures;
+    }
 
 
     useEffect(() => {
