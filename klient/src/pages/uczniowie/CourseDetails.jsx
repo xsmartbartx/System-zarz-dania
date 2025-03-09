@@ -120,6 +120,21 @@ const CourseDetails = () => {
             <p className='md:text-lg text-gray-500'>{courseData.discount}% off</p>
       </div>
 
+      <div className='container mx-auto p-4'>
+        <div className='flex items-center space-x-2'>
+          <img src={assets.star} alt="star icon" />
+          <p>{calculateRating(courseData)}</p>
+        </div>
+
+        <div className='h-4 w-px bg-gray-500/40'></div>
+
+        <div className='flex items-center gap-1'>
+          <img src={assets.time_clock_icon} alt="time clock icon" />
+          <p>{calculateRating(courseData)}</p>
+        </div>
+
+      </div>
+
   </div>
     </>
   ) : <Ładowanie />;
