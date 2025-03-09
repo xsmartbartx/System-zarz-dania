@@ -60,7 +60,10 @@ const CourseDetails = () => {
                 <div>
                   <div>
                     <img src={assets.down_arrow_icon} alt='arrow icon' className='w-5 h-5'/>
+                    <p>{chapter.chapterTitle}</p>
                   </div>
+                  <p>{chapter.chapterContent.length} lectures - 
+                    {calculateChapterTime(chapter)}</p>
                 </div>
               </div>
             ))}
@@ -70,6 +73,7 @@ const CourseDetails = () => {
 
       <div></div>
 
+    </div>
     </div>
     </>
   ) : <Ładowanie />;
