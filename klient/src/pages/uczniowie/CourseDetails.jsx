@@ -66,7 +66,7 @@ const CourseDetails = () => {
           <div className='flex flex-col space-y-4 mt-4'>
             {courseData.courseContent.map((chapter, index) => (
               <div key={index} className='border border-gray-200 rounded-lg p-4'>
-                <div className='flex justify-between items-center'>
+                <div className='flex justify-between items-center' onClick={()=>toggleSection(index)}>
                   <div className='flex items-center space-x-2'>
                     <img src={assets.down_arrow_icon} alt='arrow icon' className='w-5 h-5'/>
                     <p className='font-medium md:text-base text-sm'>{chapter.chapterTitle}</p>
@@ -75,7 +75,7 @@ const CourseDetails = () => {
                     {calculateChapterTime(chapter)}</p>
                 </div>
 
-                <div className='mt-4'>
+                <div className={'mt-4'}>
                   <ul className='list-disc list-inside'>
                     {chapter.chapterContent.map((lecture, i) => (
                       <li key={i} className='flex items-center space-x-2'>
