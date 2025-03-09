@@ -103,12 +103,12 @@ const CourseDetails = () => {
         </div>
       </div>
 
-      <div>
+      <div className='max-w-course-card z-10 shadow-custom-card roundfed-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[400px] md:min-w-[500px] lg:min-w-[600px] xl:min-w-[420px]'>
         <img src={courseData.courseTumbnail} alt=""/>
         <div className='container mx-auto p-4'>
           <div>
             <img src={assets.time_left_clock_icon} alt="time_left_clock_icon" />
-            <p>Zostało <span>5 dni</span> w tej cenie!</p>
+            <p className='text-red-500'>Zostało <span className='font-medium'>5 dni</span> w tej cenie!</p>
           </div>
       </div>
 
