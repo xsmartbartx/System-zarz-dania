@@ -15,7 +15,7 @@ const CourseDetails = () => {
 
 
   const {allCourses, calculateRating, calculateChapterTime,
-    calculateNoOfLectures, calculateCourseDuration} = useContext(AppContext);
+    calculateNoOfLectures, calculateCourseDuration, currency} = useContext(AppContext);
 
   const fetchCourseData = async () => {
     const findCourse = allCourses.find(course => course._id === id)
@@ -110,6 +110,14 @@ const CourseDetails = () => {
             <img src={assets.time_left_clock_icon} alt="time_left_clock_icon" />
             <p className='text-red-500'>Zostało <span className='font-medium'>5 dni</span> w tej cenie!</p>
           </div>
+      </div>
+
+      <div className='flex gap-3 itmes-center pt-2'>
+          <p className='text-gray-800 md:text-4x1 text-2x1 font-semibold'>{currency}{(courseData.coursePrice - courseData.discount * 
+            courseData.coursePrice /100).toFixed(2)}</p>
+            <p className='md:text-lg text-gray-500 line-through'>{currency}
+              {courseData.coursePrice}</p>
+            <p className='md:text-lg text-gray-500'>{courseData.discount}% off</p>
       </div>
 
   </div>
