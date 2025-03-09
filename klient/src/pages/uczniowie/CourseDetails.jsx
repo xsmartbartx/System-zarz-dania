@@ -75,11 +75,11 @@ const CourseDetails = () => {
                     {calculateChapterTime(chapter)}</p>
                 </div>
 
-                <div className={'mt-4'}>
+                <div className={`mt-4 ${openSections[index] ? 'block' : 'hidden'}`}>
                   <ul className='list-disc list-inside'>
                     {chapter.chapterContent.map((lecture, i) => (
                       <li key={i} className='flex items-center space-x-2'>
-                        <img src={assets.play_icon} alt='play icon' className='w-5 h-5'/>
+                        <img className={`transform transition-transform ${openSections[index] ? 'block' : 'hidden'}`} src={assets.play_icon} alt='play icon' className='w-5 h-5'/>
                         <div>
                           <p className='text-sm'>{lecture.lectureTitle}</p>
                           <div>
