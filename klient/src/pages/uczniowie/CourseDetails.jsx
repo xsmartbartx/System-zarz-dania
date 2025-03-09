@@ -11,8 +11,11 @@ const CourseDetails = () => {
   const {id} = useParams();
 
   const [courseData, setCourseData] = useState(null);
+  const [openSections, setopenSections] = useState({});
 
-  const {allCourses, calculateRating} = useContext(AppContext);
+
+  const {allCourses, calculateRating, calculateChapterTime,
+    calculateNoOfLectures, calculateCourseDuration} = useContext(AppContext);
 
   const fetchCourseData = async () => {
     const findCourse = allCourses.find(course => course._id === id)
@@ -22,6 +25,8 @@ const CourseDetails = () => {
   useEffect(() => {
     fetchCourseData();
   }, []);
+
+
 
   return courseData ? (
     <>
