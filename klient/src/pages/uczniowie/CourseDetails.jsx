@@ -26,7 +26,10 @@ const CourseDetails = () => {
     fetchCourseData();
   }, []);
 
-
+  const toggleSection = (index) => {
+    setopenSections((prev)=>({...prev, [index]: !prev[index],
+    }));
+  };
 
   return courseData ? (
     <>
