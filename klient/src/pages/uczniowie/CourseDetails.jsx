@@ -67,7 +67,16 @@ const CourseDetails = () => {
                 </div>
 
                 <div>
-                  
+                  <ul className='list-disc list-inside'>
+                    {chapter.chapterContent.map((lecture, i) => (
+                      <li key={i} className='flex items-center space-x-2'>
+                        <img src={assets.play_icon} alt='play icon' className='w-5 h-5'/>
+                        <div>
+                          <p className='text-sm'>{lecture.lectureTitle}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             ))}
