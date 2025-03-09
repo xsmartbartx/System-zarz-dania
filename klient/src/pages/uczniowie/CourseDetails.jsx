@@ -76,7 +76,7 @@ const CourseDetails = () => {
                           <p className='text-sm'>{lecture.lectureTitle}</p>
                           <div>
                             {lecture.isPreviewFree && <p>Podgląd</p>}
-                            <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000,)}</p>
+                            <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000, {units: ['g', 'm']})}</p>
                           </div>
                         </div>
                       </li>
