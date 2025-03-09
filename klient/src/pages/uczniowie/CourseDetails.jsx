@@ -129,7 +129,7 @@ const CourseDetails = () => {
         <div className='h-4 w-px bg-gray-500/40'></div>
 
         <div className='flex items-center gap-1'>
-          <img src={assets.time_clock_icon} alt="time clock icon" />
+          <img src={assets.time_clock_icon} alt="clock icon" />
           <p>{calculateRating(courseData)}</p>
         </div>
 
