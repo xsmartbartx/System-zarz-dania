@@ -96,14 +96,18 @@ const CourseDetails = () => {
           </div>
       </div>
 
-      <div className='container mx-auto p-4'>
-        <h3 className='text-x1 font-semibold text-gray-800'>Opis Kursu</h3>
-        <p className='pt-4 md:text-bsae text-sm'
-         dangerouslySetInnerHTML={{__html: courseData.courseDescription}}></p>
+        <div className='container mx-auto p-4'>
+          <h3 className='text-x1 font-semibold text-gray-800'>Opis Kursu</h3>
+          <p className='pt-4 md:text-bsae text-sm'
+          dangerouslySetInnerHTML={{__html: courseData.courseDescription}}></p>
+        </div>
       </div>
 
-    </div>
-    </div>
+      <div>
+        <img src='' alt=''/>
+      </div>
+
+  </div>
     </>
   ) : <Ładowanie />;
 }
