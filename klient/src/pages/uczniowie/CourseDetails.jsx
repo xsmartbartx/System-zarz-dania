@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import { AppContext } from '../../context/AppContext'
 import Ładowanie from '../../components/Ładowanie'
 import { assets } from '../../assets/assets'
+import humanizeDuration from 'humanize-duration'
 
 const CourseDetails = () => {
 
@@ -66,13 +67,17 @@ const CourseDetails = () => {
                     {calculateChapterTime(chapter)}</p>
                 </div>
 
-                <div>
+                <div className='mt-4'>
                   <ul className='list-disc list-inside'>
                     {chapter.chapterContent.map((lecture, i) => (
                       <li key={i} className='flex items-center space-x-2'>
                         <img src={assets.play_icon} alt='play icon' className='w-5 h-5'/>
                         <div>
                           <p className='text-sm'>{lecture.lectureTitle}</p>
+                          <div>
+                            {lecture.isPreviewFree && <p>Podgląd</p>}
+                            <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000,)}</p>
+                          </div>
                         </div>
                       </li>
                     ))}
