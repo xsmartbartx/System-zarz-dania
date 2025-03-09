@@ -57,14 +57,13 @@ const CourseDetails = () => {
           <div className='flex flex-col space-y-4 mt-4'>
             {courseData.courseContent.map((chapter, index) => (
               <div key={index} className='border border-gray-200 rounded-lg p-4'>
-                <h3 className='text-base font-semibold text-gray-800'>{chapter.chapterTitle}</h3>
-                <div className='flex items-center space-x-2'>
-                  <p>{chapter.chapterContent.length} {chapter.chapterContent.length > 1 ? 'lekcje' : 'lekcja'}</p>
-                  <p>{chapter.chapterDuration}</p>
+                <div>
+                  <div>
+                    <img src={assets.play} alt='' className='w-5 h-5'/>
+                  </div>
                 </div>
               </div>
             ))}
-            </div>
       </div>
 
       </div>
