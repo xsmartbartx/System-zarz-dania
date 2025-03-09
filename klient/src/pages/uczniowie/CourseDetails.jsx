@@ -104,7 +104,12 @@ const CourseDetails = () => {
       </div>
 
       <div>
-        <img src='' alt=''/>
+        <img src={courseData.courseTumbnail} alt=""/>
+        <div className='container mx-auto p-4'>
+          <div>
+            <img src={assets.time_left_clock_icon} alt="time_left_clock_icon" />
+            <p>Zostało <span>5 dni</span> w tej cenie!</p>
+          </div>
       </div>
 
   </div>
