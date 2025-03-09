@@ -48,10 +48,26 @@ const CourseDetails = () => {
       
               <p>{courseData.zapisaniUczniowie.length} {courseData.zapisaniUczniowie.length
               > 1 ? 'uczniowie': 'uczeń'}</p>
-      </div>
 
       <p className='text-sm'>Kurs zrobiony przez:<span className='text-blue-underline'>MiejskiSurfer</span></p>
+      
+      <div className='container mx-auto p-4'>
+          <h2 className='text-lg font-semibold text-gray-800'>Co znajdziesz w kursie?</h2>
 
+          <div className='flex flex-col space-y-4 mt-4'>
+            {courseData.courseContent.map((chapter, index) => (
+              <div key={index} className='border border-gray-200 rounded-lg p-4'>
+                <h3 className='text-base font-semibold text-gray-800'>{chapter.chapterTitle}</h3>
+                <div className='flex items-center space-x-2'>
+                  <p>{chapter.chapterContent.length} {chapter.chapterContent.length > 1 ? 'lekcje' : 'lekcja'}</p>
+                  <p>{chapter.chapterDuration}</p>
+                </div>
+              </div>
+            ))}
+            </div>
+      </div>
+
+      </div>
 
       <div></div>
 
