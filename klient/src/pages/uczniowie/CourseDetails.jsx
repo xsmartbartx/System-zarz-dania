@@ -59,7 +59,7 @@ const CourseDetails = () => {
               <div key={index} className='border border-gray-200 rounded-lg p-4'>
                 <div>
                   <div>
-                    <img src={assets.play} alt='' className='w-5 h-5'/>
+                    <img src={assets.down_arrow_icon} alt='arrow icon' className='w-5 h-5'/>
                   </div>
                 </div>
               </div>
