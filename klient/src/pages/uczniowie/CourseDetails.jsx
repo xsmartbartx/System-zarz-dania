@@ -143,8 +143,11 @@ const CourseDetails = () => {
 
       </div>
 
+      <button className='md:mt-6 mt-4 w-full py-3 rounded bg-blue-600 text-white
+       font medium'>{isAlreadyZapisany ? 'Already Zapisany' : 'Zapisz teraz'}</button>
+
   </div>
-    </>
+  </>
   ) : <Ładowanie />;
 }
 
