@@ -5,6 +5,7 @@ import { AppContext } from '../../context/AppContext'
 import Ładowanie from '../../components/Ładowanie'
 import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
+import Footer from '../../components/Footer'
 
 const CourseDetails = () => {
 
@@ -13,6 +14,7 @@ const CourseDetails = () => {
   const [courseData, setCourseData] = useState(null);
   const [openSections, setopenSections] = useState({});
   const [isAlreadyZapisany, setIsAlreadyZapisany] = useState(false);
+  const [playerData, setPlayerData] = useState(null);
 
 
   const {allCourses, calculateRating, calculateChapterTime,
@@ -83,8 +85,9 @@ const CourseDetails = () => {
                         <img className={`transform transition-transform ${openSections[index] ? 'block' : 'hidden'}`} src={assets.play_icon} alt='play icon' className='w-5 h-5'/>
                         <div>
                           <p className='text-sm'>{lecture.lectureTitle}</p>
-                          <div>
-                            {lecture.isPreviewFree && <p>Podgląd</p>}
+                          <div className='flex items-center space-x-2'>
+                            {lecture.isPreviewFree && <p onClick={()=> 
+                              setPlayerData({videoId: lecture.lectureUrl.split('/').pop()})}>Podgląd</p>}
                             <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000, {units: ['g', 'm']})}</p>
                           </div>
                         </div>
