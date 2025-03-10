@@ -6,6 +6,22 @@ const Zapisy = () => {
 
   const {zapisanyCourses, calculateCourseDuration} = useContext(AppContext);
 
+  const [progressArray, setProgressArray] = useState([
+    {lectureCompleted: 4, totalLectures: 10},
+    {lectureCompleted: 2, totalLectures: 8},
+    {lectureCompleted: 6, totalLectures: 12},
+    {lectureCompleted: 3, totalLectures: 9},
+    {lectureCompleted: 5, totalLectures: 10},
+    {lectureCompleted: 7, totalLectures: 15},
+    {lectureCompleted: 4, totalLectures: 10},
+    {lectureCompleted: 2, totalLectures: 8},
+    {lectureCompleted: 6, totalLectures: 12},
+    {lectureCompleted: 3, totalLectures: 9},
+    {lectureCompleted: 5, totalLectures: 10},
+    {lectureCompleted: 7, totalLectures: 15},
+    {lectureCompleted: 4, totalLectures: 10},    
+  ]);
+
   return (
     <>
     <div className='container mx-auto p-4'>
