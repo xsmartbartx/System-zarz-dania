@@ -4,7 +4,7 @@ import { useContext } from 'react'
 
 const Zapisy = () => {
 
-  const {zapisanyCourses, calculateCourseDuration} = useContext(AppContext);
+  const {zapisanyCourses, calculateCourseDuration, navigate} = useContext(AppContext);
 
   const [progressArray, setProgressArray] = useState([
     {lectureCompleted: 4, totalLectures: 10},
@@ -41,7 +41,8 @@ const Zapisy = () => {
           {zapisanyCourses.map((course, index) => (
             <tr key={index} className='border-b border-gray-200'>
               <td>
-                <img src={course.courseThumbnail} alt="" className='w-14 sm:w-24 md:w-28' />
+                <img src={course.courseThumbnail} alt="" className='w-14 sm:w-24
+                 md:w-28' />
                 <div>
                   <p>{course.courseTytuł}</p>
                 </div>
@@ -50,10 +51,13 @@ const Zapisy = () => {
                 {calculateCourseDuration(course)}
               </td>
               <td>
-                {progressArray[[index] && `${progressArray[index].lectureCompleted} / `]} <span>Wykłady</span>
+                {progressArray[[index] && `${progressArray[index].lectureCompleted}
+                 / ${progressArray[index].totalLectures}`]}
+                <span>Wykłady</span>
               </td>
               <td>
-                <button>Zakończony</button>
+                <button onClick={()=> navigate('/player/' + course._id)}>{progressArray[index] && progressArray[index].lectureCompleted
+                  / progressArray[index].totalLectures === 1 ? 'Ukończone' : 'W trakcie'}Zakończony</button>
               </td>
             </tr>
           ))}
