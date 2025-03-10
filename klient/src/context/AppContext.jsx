@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import { dummyCourses } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import humanizeDuration from 'humanize-duration';
+import Zapisy from "../pages/uczniowie/Zapisy";
 
 export const AppContext = createContext(); 
 
@@ -12,6 +13,7 @@ export const AppContextProvider = (props) => {
 
     const [allCourses, setAllCourses] = useState([]);
     const [isNauczyciel, setIsNauczyciel] = useState(true);
+    const [isZapisany, setIsZapisany] = useState([]);
 
     const fetchAllCourses = async () => {
         setAllCourses(dummyCourses);
@@ -58,14 +60,18 @@ export const AppContextProvider = (props) => {
     }
 
 
+    const fetchUserZapisanyCourses = async () => {
+        setZapisanyCourses(dummyCourses);
+
     useEffect(() => {
         fetchAllCourses();
+        fetchUserZapisanyCourses();
     }, []);
 
     const value = {
         currency, allCourses, navigate, fetchAllCourses, calculateRating,
         isNauczyciel, setIsNauczyciel, calculateChapterTime, calculateCourseDuration,
-        calculateNoOfLectures};
+        calculateNoOfLectures, zapisanyCourses};
 
     return (
         <AppContext.Provider value={{value}}>
