@@ -1,6 +1,11 @@
 import React from 'react'
+import { AppContext } from '../../context/AppContext'
+import { useContext } from 'react'
 
 const Zapisy = () => {
+
+  const {zapisanyCourses} = useContext(AppContext);
+
   return (
     <>
     <div className='container mx-auto p-4'>
@@ -16,6 +21,18 @@ const Zapisy = () => {
             </th>
           </tr>
         </thead>
+        <tbody>
+          {zapisanyCourses.map((course, index) => (
+            <tr key={index} className='border-b border-gray-200'>
+              <td>
+                <img src={course.courseThumbnail} alt="" className='w-14 sm:w-24 md:w-28' />
+                <div>
+                  <p>{course.courseTytuł}</p>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
     </>
