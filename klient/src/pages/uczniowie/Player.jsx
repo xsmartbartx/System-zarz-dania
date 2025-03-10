@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Osoba = () => {
+const Player = () => {
   return (
     <div><h1>Osoba</h1></div>
   )
 }
 
-export default Osoba
+export default Player
