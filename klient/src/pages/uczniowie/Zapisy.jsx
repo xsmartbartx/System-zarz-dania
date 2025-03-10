@@ -9,6 +9,9 @@ const Zapisy = () => {
           <tr>
             <th>
               <td className='px-4 py-3 font-semibold truncate'>Kurs</td>
+              <td className='px-4 py-3 font-semibold truncate'>Czas trwania</td>
+              <td className='px-4 py-3 font-semibold truncate'>Zakończone</td>
+              <td className='px-4 py-3 font-semibold truncate'>Status</td>
             </th>
           </tr>
         </thead>
