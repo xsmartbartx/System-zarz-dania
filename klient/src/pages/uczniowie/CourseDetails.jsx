@@ -146,6 +146,18 @@ const CourseDetails = () => {
       <button className='md:mt-6 mt-4 w-full py-3 rounded bg-blue-600 text-white
        font medium'>{isAlreadyZapisany ? 'Already Zapisany' : 'Zapisz teraz'}</button>
 
+
+      <div className='pt-6'>
+        <p className='md:text -x1 text-lg font-medium text-gray-800'>Co zawiera kurs</p>
+        <ul className='list-disc list-inside pt-2'>
+          <li>11111</li>
+          <li>222222</li>
+          <li>3333333</li>
+          <li>44444444</li>
+          <li>555555555</li>
+        </ul>
+      </div>
+
   </div>
   </>
   ) : <Ładowanie />;
