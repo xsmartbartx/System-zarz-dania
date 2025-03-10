@@ -6,6 +6,7 @@ import Ładowanie from '../../components/Ładowanie'
 import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
 import Footer from '../../components/Footer'
+import Youtube from 'react-youtube'
 
 const CourseDetails = () => {
 
@@ -110,8 +111,14 @@ const CourseDetails = () => {
       <div className='max-w-course-card z-10 shadow-custom-card roundfed-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[400px] md:min-w-[500px] lg:min-w-[600px] xl:min-w-[420px]'>
         <img src={courseData.courseTumbnail} alt=""/>
         <div className='container mx-auto p-4'>
-          <div>
-            <img src={assets.time_left_clock_icon} alt="time_left_clock_icon" />
+          <div className='flex items-center gap-2'>
+
+            {
+              playerData ?
+
+              : <img src={assets.time_left_clock_icon} alt="time_left_clock_icon" />
+            }
+
             <p className='text-red-500'>Zostało <span className='font-medium'>5 dni</span> w tej cenie!</p>
           </div>
       </div>
