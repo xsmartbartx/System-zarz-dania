@@ -115,7 +115,7 @@ const CourseDetails = () => {
 
             {
               playerData ?
-
+              <Youtube videoId={playerData.videoId} opts={{playerVars: {autoplay: 1}}} iframeClassName='w-full aspect-video' />
               : <img src={assets.time_left_clock_icon} alt="time_left_clock_icon" />
             }
 
