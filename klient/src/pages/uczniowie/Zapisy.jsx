@@ -50,7 +50,7 @@ const Zapisy = () => {
                 {calculateCourseDuration(course)}
               </td>
               <td>
-                4 / 10 <span>Wykłady</span>
+                {progressArray[[index] && `${progressArray[index].lectureCompleted} / `]} <span>Wykłady</span>
               </td>
               <td>
                 <button>Zakończony</button>
