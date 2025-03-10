@@ -109,17 +109,18 @@ const CourseDetails = () => {
       </div>
 
       <div className='max-w-course-card z-10 shadow-custom-card roundfed-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[400px] md:min-w-[500px] lg:min-w-[600px] xl:min-w-[420px]'>
+        
+        {
+          playerData ?
+          <Youtube videoId={playerData.videoId} opts={{playerVars: {autoplay: 1}}}
+           iframeClassName='w-full aspect-video' />
+          : <img src={courseData.courseTumbnail} alt="" />
+        }
         <img src={courseData.courseTumbnail} alt=""/>
         <div className='container mx-auto p-4'>
-          <div className='flex items-center gap-2'>
-
-            {
-              playerData ?
-              <Youtube videoId={playerData.videoId} opts={{playerVars: {autoplay: 1}}} iframeClassName='w-full aspect-video' />
-              : <img src={assets.time_left_clock_icon} alt="time_left_clock_icon" />
-            }
-
-            <p className='text-red-500'>Zostało <span className='font-medium'>5 dni</span> w tej cenie!</p>
+          <div className='flex items-center gap-2'>   
+          <img src={assets.time_left_clock_icon} alt="time_left_clock_icon" />
+          <p className='text-red-500'>Zostało <span className='font-medium'>5 dni</span> w tej cenie!</p>
           </div>
       </div>
 
