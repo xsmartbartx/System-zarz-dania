@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppContext } from '../../context/AppContext'
 import { useContext } from 'react'
+import { Line } from 'rc-progress'
 
 const Zapisy = () => {
 
@@ -45,6 +46,7 @@ const Zapisy = () => {
                  md:w-28' />
                 <div>
                   <p>{course.courseTytuł}</p>
+                  <Line strokeWidth={2} percent={progressArray[index] ? (progressArray[index].lectureCompleted * 100) / progressArray[index].totalLectures : 0} className='bg-gray-300 rounded-full' className='bg-gray-300 rounded-full'/>
                 </div>
               </td>
               <td>
@@ -64,6 +66,8 @@ const Zapisy = () => {
         </tbody>
       </table>
     </div>
+
+    <Footer />
     </>
   )
 }
