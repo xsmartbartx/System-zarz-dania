@@ -4,7 +4,7 @@ import { useContext } from 'react'
 
 const Zapisy = () => {
 
-  const {zapisanyCourses} = useContext(AppContext);
+  const {zapisanyCourses, calculateCourseDuration} = useContext(AppContext);
 
   return (
     <>
@@ -29,6 +29,15 @@ const Zapisy = () => {
                 <div>
                   <p>{course.courseTytuł}</p>
                 </div>
+              </td>
+              <td>
+                {calculateCourseDuration(course)}
+              </td>
+              <td>
+                4 / 10 <span>Wykłady</span>
+              </td>
+              <td>
+                <button>Zakończony</button>
               </td>
             </tr>
           ))}
