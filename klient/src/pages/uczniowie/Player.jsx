@@ -4,6 +4,7 @@ import { AppContext } from '../../context/AppContext'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { assets } from '../../assets/assets'
+import humanizeDuration from 'humanize-duration'
 
 
 const Player = () => {
@@ -24,7 +25,7 @@ const Player = () => {
 
   useEffect(() => {
     fetchCourseData();
-  }, [allCourses]);
+  }, [zapisanyCourses]);
   
   const toggleSection = (index) => {
     setopenSections((prev)=>({...prev, [index]: !prev[index],
