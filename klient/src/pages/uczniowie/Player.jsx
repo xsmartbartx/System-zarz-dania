@@ -10,6 +10,8 @@ const Player = () => {
   const {zapisanyCourses, calculateChapterTime} = useContext(AppContext);
   const {courseId} = useParams();
   const [courseData, setCourseData] = useState(null);
+  const [openSections, setOpenSections] = useState({});
+  const [playerData, setPlayerData] = useState(null);
 
   const getCourseData = () => {
     zapisanyCourses.map(course => {
@@ -18,6 +20,15 @@ const Player = () => {
       }
     });
   }
+
+  useEffect(() => {
+    fetchCourseData();
+  }, [allCourses]);
+  
+  const toggleSection = (index) => {
+    setopenSections((prev)=>({...prev, [index]: !prev[index],
+    }));
+  };
 
   return (
 <>
