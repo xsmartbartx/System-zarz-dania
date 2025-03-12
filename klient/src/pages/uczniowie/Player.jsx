@@ -1,10 +1,23 @@
 import React from 'react'
 import { useContext } from 'react'
 import { AppContext } from '../../context/AppContext'
+import { useParams } from 'react-router-dom'
+import { useState } from 'react'
+
 
 const Player = () => {
 
   const {zapisanyCourses, calculateChapterTime} = useContext(AppContext);
+  const {courseId} = useParams();
+  const [courseData, setCourseData] = useState(null);
+
+  const getCourseData = () => {
+    zapisanyCourses.map(course => {
+      if (course._id === courseId) {
+        setCourseData(course);
+      }
+    });
+  }
 
   return (
 <>
@@ -16,7 +29,7 @@ const Player = () => {
                   <h2 className='text-lg font-semibold text-gray-800'>Co znajdziesz w kursie?</h2>
         
                   <div className='flex flex-col space-y-4 mt-4'>
-                    {courseData.courseContent.map((chapter, index) => (
+                    {courseData && courseData.courseContent.map((chapter, index) => (
                       <div key={index} className='border border-gray-200 rounded-lg p-4'>
                         <div className='flex justify-between items-center' onClick={()=>toggleSection(index)}>
                           <div className='flex items-center space-x-2'>
