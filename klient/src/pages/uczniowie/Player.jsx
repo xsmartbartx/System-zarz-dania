@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
+import YouTube from 'react-youtube'
 
 
 const Player = () => {
@@ -76,11 +77,15 @@ const Player = () => {
                     ))}
                   </div>
               </div>
-     
 
-
-    <div></div>
-
+        <div>
+          {playerData ? (
+            <div></div>
+          )
+          :
+          <img src={courseData ? courseData.courseThumbnail : ''} alt="" />
+            }
+        </div>
     </div>
 </>
   )
