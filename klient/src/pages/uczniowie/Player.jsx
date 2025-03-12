@@ -80,7 +80,15 @@ const Player = () => {
 
         <div>
           {playerData ? (
-            <div></div>
+            <div>
+              <YouTube videoId={playerData.lectureUrl.split('/').pop()}
+                iframeClassName='ww-full aspect-video'/>
+              <div>
+                <p>{playerData.chapter}.{playerData.lecture} 
+                  {playerData.lectureTitle}</p>
+                <button>Ukończone</button>
+              </div>
+            </div>
           )
           :
           <img src={courseData ? courseData.courseThumbnail : ''} alt="" />
