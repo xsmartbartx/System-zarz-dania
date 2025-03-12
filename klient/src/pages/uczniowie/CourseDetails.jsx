@@ -83,7 +83,8 @@ const CourseDetails = () => {
                   <ul className='list-disc list-inside'>
                     {chapter.chapterContent.map((lecture, i) => (
                       <li key={i} className='flex items-center space-x-2'>
-                        <img className={`transform transition-transform ${openSections[index] ? 'block' : 'hidden'}`} src={assets.play_icon} alt='play icon' className='w-5 h-5'/>
+                        <img className={`transform transition-transform ${openSections[index] ?
+                           'block' : 'hidden'}`} src={assets.play_icon} alt='play icon'/>
                         <div>
                           <p className='text-sm'>{lecture.lectureTitle}</p>
                           <div className='flex items-center space-x-2'>
