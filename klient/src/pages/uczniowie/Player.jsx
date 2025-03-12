@@ -3,10 +3,47 @@ import React from 'react'
 const Player = () => {
   return (
 <>
-    <div className='p-4 sm:p-10 flex flex-col-reverse md:flex-row'>
+    
       <div className='container mx-auto p-4'>
         <h2 className='text-x1 font-semibold'>Osoba</h2>
-      </div>
+
+        <div className='container mx-auto p-4'>
+                  <h2 className='text-lg font-semibold text-gray-800'>Co znajdziesz w kursie?</h2>
+        
+                  <div className='flex flex-col space-y-4 mt-4'>
+                    {courseData.courseContent.map((chapter, index) => (
+                      <div key={index} className='border border-gray-200 rounded-lg p-4'>
+                        <div className='flex justify-between items-center' onClick={()=>toggleSection(index)}>
+                          <div className='flex items-center space-x-2'>
+                            <img src={assets.down_arrow_icon} alt='arrow icon' className='w-5 h-5'/>
+                            <p className='font-medium md:text-base text-sm'>{chapter.chapterTitle}</p>
+                          </div>
+                          <p className='font-medium md:text-base text-sm'>{chapter.chapterContent.length} lectures - 
+                            {calculateChapterTime(chapter)}</p>
+                        </div>
+        
+                        <div className={`mt-4 ${openSections[index] ? 'block' : 'hidden'}`}>
+                          <ul className='list-disc list-inside'>
+                            {chapter.chapterContent.map((lecture, i) => (
+                              <li key={i} className='flex items-center space-x-2'>
+                                <img className={`transform transition-transform ${openSections[index] ? 'block' : 'hidden'}`} src={assets.play_icon} alt='play icon' className='w-5 h-5'/>
+                                <div>
+                                  <p className='text-sm'>{lecture.lectureTitle}</p>
+                                  <div className='flex items-center space-x-2'>
+                                    {lecture.isPreviewFree && <p onClick={()=> 
+                                      setPlayerData({videoId: lecture.lectureUrl.split('/').pop()})}>Podgląd</p>}
+                                    <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000, {units: ['g', 'm']})}</p>
+                                  </div>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+              </div>
+     
 
 
     <div></div>

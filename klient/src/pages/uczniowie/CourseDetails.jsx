@@ -36,7 +36,7 @@ const CourseDetails = () => {
   };
 
   return courseData ? (
-    <>
+  <>
     <div className='course-details'>
       
       <div className='absolute top-0 left-0 w-full h-section-height'></div>
