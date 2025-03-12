@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { AppContext } from '../../context/AppContext'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
+import { assets } from '../../assets/assets'
 
 
 const Player = () => {
@@ -56,13 +57,13 @@ const Player = () => {
                             {chapter.chapterContent.map((lecture, i) => (
                               <li key={i} className='flex items-center space-x-2'>
                                 <img className={`transform transition-transform ${openSections[index] ?
-                                   'block' : 'hidden'}`} src={assets.play_icon} alt='play icon' 
-                                   />
+                                   'block' : 'hidden'}`} src={false ? assets.blue_tick_icon : assets.play_icon} alt='play icon' />
                                 <div>
                                   <p className='text-sm'>{lecture.lectureTitle}</p>
                                   <div className='flex items-center space-x-2'>
-                                    {lecture.isPreviewFree && <p onClick={()=> 
-                                      setPlayerData({videoId: lecture.lectureUrl.split('/').pop()})}>Podgląd</p>}
+                                    {lecture.lectureUrl && <p onClick={()=> 
+                                      setPlayerData({...lecture, chapter: index +1, lecture: i + 1})}
+                                      >Podgląd</p>}
                                     <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000, {units: ['g', 'm']})}</p>
                                   </div>
                                 </div>
