@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { use } from 'react'
 
-const SystemOceniania = () => {
+const Rating = () => {
 
-  const [rating, setRating] = useState(initialSystemOceniania || 0);
+  const [rating, setRating] = useState(initialRating || 0);
 
-  const handleSystemOceniania = (value) => {
-    setS
+  const handleRating = (value) => {
+    setRating(value);
+    if(onRate) onRate(value);
+  }
+
+  useEffect(() => {
+    if(initialRating) {
+      setRating(initialRating);
+    }
+  }, [initialRating]);
 
   return (
     <div>
@@ -13,7 +21,7 @@ const SystemOceniania = () => {
       const starValue = index + 1;
       return (
         <span key={index} className={`text-x1 sm:text-2x1 cursor-pointer
-         ${starValue <= SystemOceniania}`}>
+         ${starValue <= rating ? 'text-yellow-400' : 'text-gray-300'}`}>
 
         </span>
       )
@@ -22,4 +30,4 @@ const SystemOceniania = () => {
   )
 }
 
-export default SystemOceniania
+export default Rating
