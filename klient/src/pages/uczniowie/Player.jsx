@@ -78,7 +78,7 @@ const Player = () => {
                   </div>
               </div>
 
-        <div>
+        <div className='md:10-auto p-4'>
           {playerData ? (
             <div>
               <YouTube videoId={playerData.lectureUrl.split('/').pop()}
@@ -86,7 +86,7 @@ const Player = () => {
               <div>
                 <p>{playerData.chapter}.{playerData.lecture} 
                   {playerData.lectureTitle}</p>
-                <button>Ukończone</button>
+                <button className='text=blue-600'>{false ? 'Ukończone' : 'Zaznacz jako zaliczone'}}</button>
               </div>
             </div>
           )
