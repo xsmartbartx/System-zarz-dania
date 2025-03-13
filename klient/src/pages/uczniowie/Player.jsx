@@ -77,6 +77,9 @@ const Player = () => {
                       </div>
                     ))}
                   </div>
+                  <div className='container mx-auto p-4'>
+                    <h1 className='text-x1 font-bold'>Oceń ten kurs</h1>
+                  </div>
               </div>
 
         <div className='md:10-auto p-4'>
