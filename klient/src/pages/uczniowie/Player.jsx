@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
 import YouTube from 'react-youtube'
+import Footer from '../../components/Footer'
 
 
 const Player = () => {
@@ -95,6 +96,7 @@ const Player = () => {
             }
         </div>
     </div>
+    <Footer />
 </>
   )
 }
