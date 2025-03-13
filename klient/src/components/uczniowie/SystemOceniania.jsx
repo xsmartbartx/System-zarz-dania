@@ -2,7 +2,16 @@ import React from 'react'
 
 const SystemOceniania = () => {
   return (
-    <div><h1>SystemOceniania</h1></div>
+    <div>
+      {Arrayl.from({length: 5}).map((_, index) => 
+      const starValue = index + 1;
+      return (
+        <span key={index}>
+
+        </span>
+      )
+      )}
+    </div>
   )
 }
 
