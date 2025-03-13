@@ -7,6 +7,7 @@ import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
 import YouTube from 'react-youtube'
 import Footer from '../../components/Footer'
+import Rating from '../../components/uczniowie/Rating'
 
 
 const Player = () => {
@@ -79,6 +80,7 @@ const Player = () => {
                   </div>
                   <div className='container mx-auto p-4'>
                     <h1 className='text-x1 font-bold'>Oceń ten kurs</h1>
+                    <Rating initialRating={0} />
                   </div>
               </div>
 
