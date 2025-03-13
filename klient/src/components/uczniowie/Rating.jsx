@@ -21,8 +21,9 @@ const Rating = () => {
       const starValue = index + 1;
       return (
         <span key={index} className={`text-x1 sm:text-2x1 cursor-pointer
-         ${starValue <= rating ? 'text-yellow-400' : 'text-gray-300'}`}>
-
+         ${starValue <= rating ? 'text-yellow-400' :
+          'text-gray-300'}`} onClick={()=> handleRating(starValue)}>
+          &#9733;
         </span>
       )
       )}
