@@ -64,6 +64,33 @@ const DodajKurs = () => {
     }
   };
 
+  const addLecture = () => {
+    setChapters(
+      chapters.map((chapter) => {
+        if (chapter.chapterId === currentChapterId) {
+          const newLecture = {
+            ...lectureDetails,
+            lectureOrder: chapter.chapterContent.length > 0 ? chapter.chapterContent.slice(-1)[0].lectureOrder + 1 : 1,
+            lectureId: uniqid()
+          };
+          chapter.chapterContent.push(newLecture);
+        }
+        return chapter;
+      })
+    );
+    setShowPopup(false);
+    setLectureDetails({
+      lectureTitle: '',
+      lectureDuration: '',
+      lectureUrl: '',
+      isPreviewFree: false,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+  }
+
   useEffect(()=>{
     if(!quillRef.current && editorRef.current) {
       quillRef.current = new Quill(editorRef.current, {
@@ -112,11 +139,11 @@ const DodajKurs = () => {
             <div key={chapterIndex}>
               <div>
                 <div>
-                  <img src={assets.dropdown_icon} width={14} alt="" />
+                  <img onClick={() => handleChapter('toggle', chapter.chapterId)} src={assets.dropdown_icon} width={14} alt="" />
                   <span>{chapterIndex + 1} {chapter.courseTitle}</span>
                 </div>
                 <span>{chapter.chapterContent.length} Wyklady</span>
-                <img src={assets.cross_icon} alt="" />
+                <img onClick={() => handleChapter('remove', chapter.chapterId)} src={assets.cross_icon} alt="" />
               </div>
               {! chapter.collapsed && (
                 <div>
@@ -125,10 +152,11 @@ const DodajKurs = () => {
                       <span>{lectureIndex + 1} {lecture.lectureTitle}
                          - {lecture.isPreviewFree ? 'Darmowy podgląd'
                           : 'Zapłacone'}</span>
-                      <img src={assets.cross_icon} alt="" />
+                      <img src={assets.cross_icon} alt="" onClick={()=>handleLecture
+                        ('remove', chapter.chapterId, lectureIndex)} />
                     </div>
                   ))}
-                  <div>
+                  <div onClick={() => handleChapter('add', chapter.chapterId)}>
                     + Dodaj wykład
                   </div>
                 </div>
