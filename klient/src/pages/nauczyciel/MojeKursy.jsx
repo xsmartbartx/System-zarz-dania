@@ -30,6 +30,20 @@ const MojeKursy = () => {
             <th>Oblikowane</th>
           </tr>
         </thead>
+        <tbody>
+          {courses.map((course) => (
+            <tr key={course._id}>
+              <td>
+                <img src={course.courseThumbnail} alt="Wygląd kursu" />
+                <span>{course.courseTitle}</span>
+              </td>
+              <td>{currency} {Math.floor(course.zapisaniUczniowie.length * 
+                (course.coursePrice - course.discount * course.coursePrice / 100))}</td>
+              <td>{course.zapisaniUczniowie.length}</td>
+              <td>{newDate(course.createdAt).toLocateString()}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   ) : <Loading />
