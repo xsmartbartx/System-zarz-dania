@@ -32,7 +32,19 @@ const DodajKurs = () => {
   }, [])
 
   return (
-    <div><h1>DodajKurs</h1></div>
+    <div>
+      <form>
+        <div>
+          <p>Tytuł kursu</p>
+          <input onChange={e => setCourseTitle(e.target.value)} value={courseTitle}
+           type='text' placeholder='Wpisz tu' required />
+        </div>
+        <div>
+          <p>Opis kursu</p>
+          <div ref={editorRef}></div>
+        </div>
+      </form>
+    </div>
   )
 }
 

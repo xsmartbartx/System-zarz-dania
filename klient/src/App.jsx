@@ -12,6 +12,7 @@ import DodajKurs from './pages/nauczyciel/DodajKurs.jsx';
 import MojeKursy from './pages/nauczyciel/MojeKursy.jsx';
 import ZapisyStudentów from './pages/nauczyciel/ZapisyStudentów.jsx';
 import Navbar from './components/nauczyciel/Navbar.jsx';
+import "quill/dist/quill.core.css";
 
 const App = () => {
 
