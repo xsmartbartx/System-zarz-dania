@@ -101,7 +101,7 @@ const DodajKurs = () => {
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <p>Tytuł kursu</p>
           <input onChange={e => setCourseTitle(e.target.value)} value={courseTitle}
@@ -193,7 +193,7 @@ const DodajKurs = () => {
                     lectureUrl: e.target.value})} />
                 </div>
                 
-                <button type='button'>Dodaj</button>
+                <button type='button' onClick={addLecture}>Dodaj</button>
 
                 <img onClick={() => setShowPopup(false)} src={assets.cross_icon} alt="" />
               </div>
