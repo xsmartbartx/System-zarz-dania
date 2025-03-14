@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react'
 import uniqid from 'unigid';
 import Quill from 'quill';
+import { assets } from '../../assets/assets';
 
 const DodajKurs = () => {
 
@@ -42,6 +43,23 @@ const DodajKurs = () => {
         <div>
           <p>Opis kursu</p>
           <div ref={editorRef}></div>
+        </div>
+
+        <div>
+          <div>
+            <p>Cena kursu</p>
+            <input onChange={e => setCoursePrice(e.target.value)}
+             value={coursePrice} type="number" placeholder='0' required />
+          </div>
+          <div>
+            <p>Miniaturka kursu</p>
+            <label htmlFor="thumbnailImage">
+              <img src={assets.file_upload_icon} alt="" />
+              <input type="file" id='thumbnailImage' onChange={e => setImage
+                (e.target.files[0])} accept="image/*" hidden />
+              <img src={image ? URL.createObjectURL (image) : ''} alt="" />
+            </label>
+          </div>
         </div>
       </form>
     </div>
