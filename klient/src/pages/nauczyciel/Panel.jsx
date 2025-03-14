@@ -20,9 +20,16 @@ const Panel = () => {
       <div>
         <div>
           <div>
-            <img src={assets.patients_icon} alt="patients_icon" />
+            <img src={assets.appointments_icon} alt="appointments_icon" />
             <div>
-              <p>{dashboardData.zapisanyStudenciData.length}</p>
+              <p>{dashboardData.totalCourses}</p>
+              <p>Wszystkie kursy</p>
+            </div>
+          </div>
+          <div>
+            <img src={assets.earning_icon} alt="earning_icon" />
+            <div>
+              <p>{currency}{dashboardData.totalEarnings}</p>
               <p>Wszystkie zapisy</p>
             </div>
           </div>
