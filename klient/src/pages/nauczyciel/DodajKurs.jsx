@@ -98,7 +98,41 @@ const DodajKurs = () => {
           <div>
             + Dodaj rozdział
           </div>
+
+          {showPopup && (
+            <div>
+              <div>
+                <h2>Dodaj wykład</h2>
+
+                <div>
+                  <p>Tytuł wykładu</p>
+                  <input type="text" value={lectureDetails.lectureTitle}
+                   onChange={(e) => setLectureDetails({...lectureDetails,
+                    lectureTitle: e.target.value})} />
+                </div>
+
+                <div>
+                  <p>Czas trwania (minutes)</p>
+                  <input type="number" value={lectureDetails.lectureDuration}
+                   onChange={(e) => setLectureDetails({...lectureDetails,
+                    lectureDuration: e.target.value})} />
+                </div>
+
+                <div>
+                  <p>Czy podgląd jest darmowy?</p>
+                  <input type="checkbox" checked={lectureDetails.isPreviewFree}
+                   onChange={(e) => setLectureDetails({...lectureDetails,
+                    lectureUrl: e.target.value})} />
+                </div>
+                
+                <button type='button'>Dodaj</button>
+
+                <img onClick={() => setShowPopup(false)} src={assets.cross_icon} alt="" />
+              </div>
+            </div>
+          )}
         </div>
+        <button type='submit'>DODAJ</button>
       </form>
     </div>
   )
