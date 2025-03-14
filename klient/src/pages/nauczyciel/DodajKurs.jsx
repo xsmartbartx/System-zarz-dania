@@ -61,6 +61,24 @@ const DodajKurs = () => {
             </label>
           </div>
         </div>
+
+        <div>
+          <p>Zniżka</p>
+          <input onChange={e. setDiscount(e.target.value)} value={discount}
+           type="number" placeholder='0' min={0} max={100} required />
+        </div>
+        <div>
+          {chapters.map((chapter, chapterIndex) =>(
+            <div key={chapterIndex}>
+              <div>
+                <div>
+                  <img src={assets.dropdown_icon} width={14} alt="" />
+                  <span>{chapterIndex + 1} {chapter.courseTitle}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </form>
     </div>
   )
