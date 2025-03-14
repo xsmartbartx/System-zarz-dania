@@ -13,11 +13,15 @@ const MojeKursy = () => {
 
   useEffect(() => {
     fetchNauczycielCourses()
-  },[])
+  }, [])
 
-  return (
-    <div><h1>MojeKursy</h1></div>
-  )
+  return courses ? (
+    <div>
+      <div>
+        <h2>Moje Kursy</h2>
+      </div>
+    </div>
+  ) : <Loading />
 }
 
 export default MojeKursy
