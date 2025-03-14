@@ -24,6 +24,46 @@ const DodajKurs = () => {
     }
   )
 
+  const handleChapter = (action, chapterId) => {
+    if (action === 'add') {
+      const title = prompt('Wpisz nazwę rozdziału:');
+      if (title) {
+        const newChapter = {
+          chapterId: uniqid(),
+          chapterTitle: title,
+          chapterContent: [],
+          collapsed: false,
+          chapterOrder: chapters.length > 0 ? chapters.slice(-1)[0].chapterOrder + 1 : 1,
+        };
+        setChapters([...chapters, newChapter]);
+      }
+    } else if (action === 'remove') {
+      setChapters(chapters.filter((chapter) => chapter.chapterId !== chapterId));
+    } else if (action === 'toggle') {
+      setChapters(
+        chapters.map((chapter) =>
+          chapter.chapterId ===chapterId ? {...chapter, collapsed: !chapter.collapsed} :chapter
+        )
+      );
+    }
+  };
+
+  const handleLecture = (action, chapterId, lectureIndex) => {
+    if (action === 'add') {
+      setCurrentChapterId(chapterId);
+      setShowPopup(true);
+    } else if (action === 'remove') {
+      setChapters(
+        chapters.map((chapter) => {
+          if (chapter.chapterId ===chapterId) {
+            chapter.chapterContent.splice(lectureIndex, 1);
+          }
+          return chapter;
+        })
+      );
+    }
+  };
+
   useEffect(()=>{
     if(!quillRef.current && editorRef.current) {
       quillRef.current = new Quill(editorRef.current, {
@@ -95,7 +135,7 @@ const DodajKurs = () => {
               )}
             </div>
           ))}
-          <div>
+          <div onClick={() => handleChapter('add')}>
             + Dodaj rozdział
           </div>
 
