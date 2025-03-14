@@ -1,9 +1,23 @@
-import React from 'react'
+import React, {useContext, useEffect, useState} from 'react'
+import { AppContext } from '../../context/AppContext'
+import { dummyDashboardData } from '../../assets/assets'
 
 const Panel = () => {
-  return (
-    <div><h1>Panel</h1></div>
-  )
+
+  const { currency } = useContext(AppContext)
+  const [dashboardData, setDashboardData] = useState(null)
+
+  const fetchDashboardData = async () => {
+    setDashboardData(dummyDashboardData)
+  }
+
+  useEffect(() => {
+    fetchDashboardData()
+  },[])
+
+  return dashboardData ? (
+    <div></div>
+  ) : <Ładowanie />
 }
 
 export default Panel
