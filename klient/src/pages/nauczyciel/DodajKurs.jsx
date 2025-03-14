@@ -75,9 +75,29 @@ const DodajKurs = () => {
                   <img src={assets.dropdown_icon} width={14} alt="" />
                   <span>{chapterIndex + 1} {chapter.courseTitle}</span>
                 </div>
+                <span>{chapter.chapterContent.length} Wyklady</span>
+                <img src={assets.cross_icon} alt="" />
               </div>
+              {! chapter.collapsed && (
+                <div>
+                  {chapter.chapterContent.map((lecture, lectureIndex)=>(
+                    <div key={lectureIndex}>
+                      <span>{lectureIndex + 1} {lecture.lectureTitle}
+                         - {lecture.isPreviewFree ? 'Darmowy podgląd'
+                          : 'Zapłacone'}</span>
+                      <img src={assets.cross_icon} alt="" />
+                    </div>
+                  ))}
+                  <div>
+                    + Dodaj wykład
+                  </div>
+                </div>
+              )}
             </div>
           ))}
+          <div>
+            + Dodaj rozdział
+          </div>
         </div>
       </form>
     </div>
