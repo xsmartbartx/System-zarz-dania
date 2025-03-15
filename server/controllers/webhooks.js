@@ -11,7 +11,26 @@ const clerkWevhooks = async (req, res)=> {
             "svix-signature": req.headers["svix-signature"]
         })
 
-        const
+        const {data, type} = req.body
+
+        switch (type) {
+            case 'user.creatted': {
+                const userData = {
+                    _id: data.id,
+                    email: data.email_address[0].email_address,
+                    name: data.first_name + " " + data.last_name,
+                    ImageUrl: data.ImageUrl,
+                }
+                await User.create(userData)
+                res.json({})
+                break;
+            }
+
+                break;
+                
+            default:
+                break;
+        }
 
     } catch (error) {
 
