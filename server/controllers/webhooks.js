@@ -32,9 +32,16 @@ const clerkWevhooks = async (req, res)=> {
                     name: data.first_name + " " + data.last_name,
                     ImageUrl: data.ImageUrl,
                 }
-                await User.findByIdAndUpdate
-            }
+                await User.findByIdAndUpdate(data.id, userData)
+                res.json({})
                 break;
+            }
+
+            case 'user.deleted' : {
+                await User.findByIdAndDelete(data.id)
+                res.json({})
+                break;
+            }
 
             default:
                 break;
