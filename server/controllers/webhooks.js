@@ -26,8 +26,16 @@ const clerkWevhooks = async (req, res)=> {
                 break;
             }
 
+            case 'user.upated': {
+                const userData = {
+                    email: data.email_address[0].email_address,
+                    name: data.first_name + " " + data.last_name,
+                    ImageUrl: data.ImageUrl,
+                }
+                await User.findByIdAndUpdate
+            }
                 break;
-                
+
             default:
                 break;
         }
