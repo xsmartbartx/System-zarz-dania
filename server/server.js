@@ -7,7 +7,7 @@ const app = express()
 
 app.use(cors())
 
-app.get('/', (req, res)=> res.send("API Working"))
+app.get('/', (req, res)=> res.send("API Pracuje"))
 
 const PORT = process.env.PORT || 5000
 

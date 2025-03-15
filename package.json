@@ -3,6 +3,7 @@
     "react": "^19.0.0"
   },
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js"
   }
 }
