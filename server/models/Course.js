@@ -32,3 +32,7 @@ const courseSchema = new mongoose.Schema({
         {type: String, ref: 'User' }
     ],
 }, {timestamps: true, minimize: fasle})
+
+const Course = mongoose.model('Course', courseSchema)
+
+export default Course;
