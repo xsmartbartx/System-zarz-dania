@@ -31,6 +31,10 @@ export const addCourse = async (req, res)=>{
         parsedCourseData.educator = educatorId
         const newCourse = await Course.create(parsedCourseData)
         const imageUpload = await cloudinary.uploader.upload(imageFile.path)
+        newCourse.courseThumnail = imageUpload.secure_url
+        await newCourse.save()
+
+        res.json({ success: true, message: 'Kurs dodany' })
 
     } catch (error) {
 
