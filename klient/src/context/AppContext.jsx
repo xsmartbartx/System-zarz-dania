@@ -52,25 +52,36 @@ export const AppContextProvider = (props) => {
         course.courseContent.map((chapter) => chapter.chapterContent.map((lecture)=>
             time += lecture.lectureDuration));
         return humanizeDuration(time * 60 * 1000, { units: ['g', 'm'],});
-
+    }
 
     const calculateNoOfLectures = (course) => {
         let totalLectures = 0;
         course.courseContent.forEach(chapter) => {
             if (Array.isArray(chapter.chapterContent))
                 {totalLectures += chapter.chapterContent.length}
-        });
+        };
         return totalLectures;
     }
 
 
     const fetchUserZapisanyCourses = async () => {
         setZapisanyCourses(dummyCourses);
+    }
 
     useEffect(() => {
         fetchAllCourses();
         fetchUserZapisanyCourses();
-    }, []);
+    }, [])
+
+    const logToken = async ()=>{
+        console.log(await getToken());
+    }
+
+    useEffect(()=>{
+        if(user){
+            logToken()
+        }
+    },[user])
 
     const value = {
         currency, allCourses, navigate, fetchAllCourses, calculateRating,
