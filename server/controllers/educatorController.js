@@ -4,8 +4,14 @@ export const updateRoleToEducator = async ()=> {
     try {
         const userId = requestAnimationFrame.auth.userId
 
-        await clerkClient
+        await clerkClient.users.updateUserMetadata(userId, {
+            publicMetadata:{
+                role: 'educator',
+            }
+        })
+
+        res.json({ success: true, message: 'Możesz kuż opublikować kurs' })
     } catch (error) {
-        
+
     }
 }
