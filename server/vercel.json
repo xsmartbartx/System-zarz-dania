@@ -11,7 +11,7 @@
             }
         }
     ],
-    "routers": [
+    "routes": [
         {
             "src": "/(.*)",
             "dest": "server.js"
