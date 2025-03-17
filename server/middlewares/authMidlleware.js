@@ -8,7 +8,10 @@ export const protectEducator = async (req, res, next)=>{
         if(response.publicMetadata.role !== 'educator'){
             return res.json({success:false, message:'Nieuprawniony dostęp'})
         }
+
+        next()
+
     } catch (error) {
-        
+        res.json({success:false, message: error.message})
     }
 }
