@@ -55,7 +55,17 @@ export const educatorDasboardData = async (req, res)=>{
     try {
         const educator = req.auth.userId
         const courses = await Course.find({educator})
-        res.json({ success: true, courses })
+        const totalCourses = courses.length;
+
+        const courseIds = courses.map(course => course._id);
+
+        const purchases = await Purchase.find({
+            courseId: {$in: courseIds},
+            status: 'completed'
+        });
+
+        const totalEarnings = purchases.reduce((sum, purchase)=> sum +
+         purchase.amount, 0)
     } catch (error) {
        
     }
