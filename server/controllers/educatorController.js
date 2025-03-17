@@ -65,7 +65,14 @@ export const educatorDasboardData = async (req, res)=>{
         });
 
         const totalEarnings = purchases.reduce((sum, purchase)=> sum +
-         purchase.amount, 0)
+         purchase.amount, 0);
+
+         const enrolledStudentsData = [];
+         for(const course of courses){
+            const students = await User.find({
+                _id: {$in: course.enrolledStudents}
+            }, 'name imageUrl')
+         }
     } catch (error) {
        
     }
