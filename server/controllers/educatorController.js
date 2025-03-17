@@ -71,9 +71,19 @@ export const educatorDasboardData = async (req, res)=>{
          for(const course of courses){
             const students = await User.find({
                 _id: {$in: course.enrolledStudents}
-            }, 'name imageUrl')
+            }, 'name imageUrl');
+
+            students.forEach(student => {
+                enrolledStudentsData.push({
+                    courseTitle: course.courseTitle, student
+                });
+            });
          }
+
+         res.json({success: true, dashboardData: {
+            totalEarnings, enrolledStudentsData, totalCourses
+         }})
     } catch (error) {
-       
+       res.json({ success: false, message: error.message });
     }
 }
