@@ -1,5 +1,6 @@
 import { clerkClient } from '@clerk/express'
 import Course from '../models/Course'
+import { Purchase } from '../models/Purchase'
 
 export const updateRoleToEducator = async (req, res)=> {
     try {
@@ -94,6 +95,18 @@ export const getEnrolledStudentsData = async (req, res)=>{
         const courses = await Course.find({educator});
         const courseIds = course.map(course => course._id);
 
+        const purchases = await Purchase.find({
+            courseId: { $in: courseIds },
+            status: 'completed'
+        }).populate('userId', 'name imageUrl').populate('courseId', 'courseTitle')
+
+        const enrolledStudents = purchase.map(purchase => ({
+            student: purchase.userId,
+            courseTitle: purchase.courseId.courseTitle,
+            purchaseDate: purchase.createAt
+        }));
+
+        res.json({success: true, enrolledStudents})
         
     } catch (error) {
 
