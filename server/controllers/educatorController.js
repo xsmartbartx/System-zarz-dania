@@ -87,3 +87,15 @@ export const educatorDasboardData = async (req, res)=>{
        res.json({ success: false, message: error.message });
     }
 }
+
+export const getEnrolledStudentsData = async (req, res)=>{
+    try {
+        const educator = req.auth.userId;
+        const courses = await Course.find({educator});
+        const courseIds = course.map(course => course._id);
+
+        
+    } catch (error) {
+
+    }
+}
