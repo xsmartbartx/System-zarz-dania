@@ -1,4 +1,5 @@
 import Course from "../models/Course.js";
+import { Purchase } from "../models/Purchase.js";
 
 export const getAllCourse = async (req, res)=>{
     try {
@@ -46,9 +47,13 @@ export const purchaseCourse = async (req, res)=>{
         const purchaseData = {
             courseId: courseData._id,
             userId,
-            amount: (courseData.coursePrice - courseData.discount * courseData.coursePrice / 100).toFixed(2),
+            amount: (courseData.coursePrice - courseData.discount *
+             courseData.coursePrice / 100).toFixed(2),
         }
 
+        const newPurchase = await Purchase.create(purchaseData)
+
+        const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY)
     } catch (error) {
 
     }
