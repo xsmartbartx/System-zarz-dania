@@ -1,7 +1,9 @@
 import express from 'express'
-import { getUserData } from '../controllers/UserController'
+import { getUserData, userEnrolledCourses } from '../controllers/UserController'
 
 const userRouter = express.Router()
 
 userRouter.get('/data', getUserData)
-userRouter.get('enrolled-courses', userEnrolled)
+userRouter.get('enrolled-courses', userEnrolledCourses)
+
+export default userRouter;
