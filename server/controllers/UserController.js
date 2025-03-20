@@ -107,6 +107,6 @@ export const updateUserCouirseProgress = async (req, res)=>{
         res.json({success:true, message: 'Postęp zaaktualizowany'})
 
     } catch (error) {
-
+        res.json({ success: false, message: error.message })
     }
 }
