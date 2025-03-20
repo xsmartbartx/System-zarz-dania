@@ -105,6 +105,10 @@ export const stripeWebhooks = async(request, response)=>{
             })
 
             const { purchaseId } = session.data[0].metadata;
+            const purchaseData = await Purchase.findById(purchaseId)
+            purchaseData = 'failed'
+            await purchaseData.save()
+
         break;}
         default:
             console.log(`Nieobsługiwany typ zdarzenia ${event.type}`);
