@@ -61,9 +61,25 @@ export const stripeWebhooks = async(request, response)=>{
     let event;
 
     try {
-        event = stripeInstance.webhooks.constructEvent(request.body, sig, endpointSecret);
+        event = stripeInstance.webhooks.constructEvent(request.body, sig,
+         process.env.STRIPE_WEBHOOK_SECRET);
     }
     catch (error) {
         response.status(400).send(`Webhook Error: ${error.message}`);
     }
+
+    switch (event.type) {
+        case 'payment_intent.succeeded':
+            const paymentIntent = event.data.object;
+            console.log('Płatność zakończona powodzeniem!');
+            break;
+        case 'payment_method.attached':
+            const paymentMethod = event.data.object;
+            console.log('Płatność dołączona do Kupującego!');
+            break;
+        default:
+            console.log(`Nieobsługiwany typ zdarzenia ${event.type}`);
+    }
+
+    response.json({received: true});
 }
