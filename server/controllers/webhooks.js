@@ -78,6 +78,12 @@ export const stripeWebhooks = async(request, response)=>{
             })
 
             const { purchaseId } = session.data[0].metadata;
+            
+            const purchaseData = await Purchase.findById(purchaseId)
+            const userData = await User.findById(purchaseData.userId)
+            const courseData = await Course.findById(purchaseData.courseId.toString())
+
+            cou
 
             console.log('Płatność zakończona powodzeniem!');
             break;
