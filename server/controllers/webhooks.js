@@ -1,6 +1,9 @@
 import { Webhook } from "svix";
 import User from "../models/User.js";
 import { request, response } from "express";
+import Stripe from "stripe";
+import { Purchase } from "../models/Purchase.js";
+import Course from "../models/Course.js";
 
 const clerkWebhooks = async (req, res) => {
     try {
