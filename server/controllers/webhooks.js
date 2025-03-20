@@ -69,7 +69,7 @@ export const stripeWebhooks = async(request, response)=>{
     }
 
     switch (event.type) {
-        case 'payment_intent.succeeded':
+        case 'payment_intent.succeeded':{
             const paymentIntent = event.data.object;
             const paymentIntentId = paymentIntent.id;
 
@@ -92,13 +92,20 @@ export const stripeWebhooks = async(request, response)=>{
             purchaseData.status = 'completed'
             await purchaseData.save()
 
-            console.log('Płatność zakończona powodzeniem!');
-            break;
 
-        case 'payment_method.attached':
-            const paymentMethod = event.data.object;
-            console.log('Płatność dołączona do Kupującego!');
             break;
+        }
+
+        case 'payment_intent.payment_failed':{
+            const paymentIntent = event.data.object;
+            const paymentIntentId = paymentIntent.id;
+
+            const session = await stripeInstance.checkout.sessions.list({
+                payment_intent: paymentIntentId
+            })
+
+            const { purchaseId } = session.data[0].metadata;
+        break;}
         default:
             console.log(`Nieobsługiwany typ zdarzenia ${event.type}`);
     }
