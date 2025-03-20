@@ -1,5 +1,6 @@
 import { Webhook } from "svix";
 import User from "../models/User.js";
+import { request, response } from "express";
 
 const clerkWebhooks = async (req, res) => {
     try {
@@ -52,4 +53,8 @@ const clerkWebhooks = async (req, res) => {
     }
 };
 
-export { clerkWebhooks };
+const stripeInstance = new Stripe
+
+export const stripeWebhooks = async(request, response)=>{
+    
+}
