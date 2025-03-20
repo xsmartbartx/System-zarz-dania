@@ -95,6 +95,13 @@ export const updateUserCouirseProgress = async (req, res)=>{
             }
 
             progressData.lectureCompleted.push(lectureId)
+            await progressData.save()
+        } else {
+            await CourseProgress.create({
+                userId,
+                courseId,
+                lectureCompleted: [lectureId]
+            })
         }
 
     } catch (error) {
