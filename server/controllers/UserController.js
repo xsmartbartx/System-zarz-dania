@@ -3,6 +3,7 @@ import Course from "../models/Course.js";
 import Stripe from "stripe";
 import { Purchase } from "../models/Purchase.js";
 import User from "../models/User.js";
+import { CourseProgress } from "../models/CourseProgress.js";
 
 export const getUserData = async (req, res)=>{
     try {
@@ -79,5 +80,16 @@ export const purchaseCourse = async (req, res)=>{
 
     } catch (error) {
         res.json({ success: false, message: error.message });
+    }
+}
+
+export const updateUserCouirseProgress = async (req, res)=>{
+    try {
+        const UserId = req.auth.userId
+        const { courseId, lectureId } = req.body
+        const progressData = await CourseProgress
+        
+    } catch (error) {
+
     }
 }
