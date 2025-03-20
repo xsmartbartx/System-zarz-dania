@@ -87,8 +87,16 @@ export const updateUserCouirseProgress = async (req, res)=>{
     try {
         const UserId = req.auth.userId
         const { courseId, lectureId } = req.body
-        const progressData = await CourseProgress
-        
+        const progressData = await CourseProgress.findOne({userId, courseId })
+
+        if(progressData){
+            if(progressData.lectureCompleted.includes(lectureId)){
+                return res.json({success: true, messag: 'Wykład już skończony'})
+            }
+
+            progressData.lectureCompleted.push(lectureId)
+        }
+
     } catch (error) {
 
     }
