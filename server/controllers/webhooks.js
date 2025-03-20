@@ -71,8 +71,17 @@ export const stripeWebhooks = async(request, response)=>{
     switch (event.type) {
         case 'payment_intent.succeeded':
             const paymentIntent = event.data.object;
+            const paymentIntentId = paymentIntent.id;
+
+            const session = await stripeInstance.checkout.sessions.list({
+                payment_intent: paymentIntentId
+            })
+
+            const { purchaseId } = session.data[0].metadata;
+
             console.log('Płatność zakończona powodzeniem!');
             break;
+
         case 'payment_method.attached':
             const paymentMethod = event.data.object;
             console.log('Płatność dołączona do Kupującego!');
