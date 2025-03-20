@@ -3,7 +3,7 @@ import { getUserData, userEnrolledCourses } from '../controllers/UserController.
 
 const userRouter = express.Router()
 
-userRouter.get('/data', geUserData)
+userRouter.get('/data', getUserData)
 userRouter.get('enrolled-courses', userEnrolledCourses)
 
 export default userRouter;
