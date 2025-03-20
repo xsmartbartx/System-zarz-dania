@@ -57,4 +57,13 @@ const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 export const stripeWebhooks = async(request, response)=>{
     const sig = request.headers['podpis-stripe'];
+
+    let event;
+
+    try {
+        event = stripeInstance.webhooks.constructEvent(request.body, sig, endpointSecret);
+    }
+    catch (error) {
+        response.status(400).send(`Webhook Error: ${error.message}`);
+    }
 }
