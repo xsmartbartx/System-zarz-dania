@@ -124,8 +124,15 @@ export const getUserCourseProgress = async (req, res) =>{
 
 export const addUserRating = async (req, res)=>{
     const userId = req.auth.userId;
-    const { courseId, rating } = req.body'
+    const { courseId, rating } = req.body;
 
     if(!course || !userId || !rating || rating < 1 || rating > 5){
+        return res.json({ success: false, message: 'Niepoprawne Dane' });
+    }
+
+    try {
+
+    } catch (error) {
+        
     }
 }
