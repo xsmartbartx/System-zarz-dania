@@ -137,6 +137,12 @@ export const addUserRating = async (req, res)=>{
             return res.json({ success: false, message: 'Kurs nieznaleziony.' });
         }
 
+        const user = await User.findById(userId);
+
+        if(!user || !user.enrolledCourses.includes(courseId)){
+            
+        }
+
     } catch (error) {
         
     }
