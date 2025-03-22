@@ -131,6 +131,11 @@ export const addUserRating = async (req, res)=>{
     }
 
     try {
+        const course = await course.findById(courseId);
+
+        if(!course) {
+            
+        }
 
     } catch (error) {
         
