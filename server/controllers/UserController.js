@@ -134,7 +134,7 @@ export const addUserRating = async (req, res)=>{
         const course = await course.findById(courseId);
 
         if(!course) {
-            
+            return res.json({ success: false, message: 'Kurs nieznaleziony.' });
         }
 
     } catch (error) {
