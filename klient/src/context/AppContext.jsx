@@ -2,8 +2,8 @@ import { createContext, useState, useEffect } from "react";
 import { dummyCourses } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import humanizeDuration from 'humanize-duration';
-import Zapisy from "../pages/uczniowie/Zapisy";
 import { useAuth, useUser } from "@clerk/clerk-react";
+import axios from 'axios'
 
 export const AppContext = createContext(); 
 
@@ -22,11 +22,9 @@ export const AppContextProvider = (props) => {
     const fetchAllCourses = async () => {
         setAllCourses(dummyCourses);
         try {
-            const response = await fetch(import.meta.env.VITE_API_URL + '/courses');
-            const data = await response.json();
-            setAllCourses(data);
+            await axios.get()
         } catch (error) {
-            console.error(error);
+        
         }
     };
 
