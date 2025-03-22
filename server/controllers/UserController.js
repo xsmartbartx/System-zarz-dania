@@ -152,9 +152,9 @@ export const addUserRating = async (req, res)=>{
         }
         await course.save();
 
-        return res.json
+        return res.json({ success: false, message: 'Ocena dodana' })
 
     } catch (error) {
-        
+        return res.json({ success: false, message: error.message })
     }
 }
