@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";  
 import { dummyCourses } from "../assets/assets";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 import humanizeDuration from 'humanize-duration';
 import { useAuth, useUser } from "@clerk/clerk-react";
 import axios from 'axios'
@@ -30,11 +30,11 @@ export const AppContextProvider = (props) => {
             if(data.success){
                 setAllCourses(data.courses)
             }else{
-
+                toast.error(data.message)
             }
 
         } catch (error) {
-        
+            toast.error(data.message)
         }
     };
 
