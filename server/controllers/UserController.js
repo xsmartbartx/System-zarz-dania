@@ -143,6 +143,17 @@ export const addUserRating = async (req, res)=>{
             return res.json({ success: false, message: 'Użytkownik nie kupił tego kursu.' });
         }
 
+        const existingRatingIndex = course.courseRating.findIndex(r => r.userId === userId)
+
+        if(existingRatingIndex > 1){
+            course.courseRatings[existingRatingIndex].rating = rating;
+        }else{
+            course.courseRatings.push({userId, rating});
+        }
+        await course.save();
+
+        return res.json
+
     } catch (error) {
         
     }
