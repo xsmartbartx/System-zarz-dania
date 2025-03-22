@@ -21,6 +21,7 @@ const App = () => {
 
   return (
     <div className='text-default min-h-screen bg-white'>
+      <ToastContainer />
       {!isNauczycielRoute && <Navbar />}
       <Navbar />
       <Routes>
