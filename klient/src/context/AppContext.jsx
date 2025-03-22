@@ -9,6 +9,8 @@ export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
 
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
     const currency = import.meta.env.VITE_CURRENCY;
     const navigate = useNavigate();
 
@@ -22,7 +24,14 @@ export const AppContextProvider = (props) => {
     const fetchAllCourses = async () => {
         setAllCourses(dummyCourses);
         try {
-            await axios.get()
+            const {data} = await axios.get(backendUrl + '/api/course/all');
+
+            if(data.success){
+                setAllCourses(data.courses)
+            }else{
+                
+            }
+
         } catch (error) {
         
         }
