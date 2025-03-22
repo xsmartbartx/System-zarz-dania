@@ -13,6 +13,7 @@ import MojeKursy from './pages/nauczyciel/MojeKursy.jsx';
 import ZapisyStudentów from './pages/nauczyciel/ZapisyStudentów.jsx';
 import Navbar from './components/nauczyciel/Navbar.jsx';
 import "quill/dist/quill.snow.css";
+import { ToastContainer, toast } from 'react=toastify';
 
 const App = () => {
 
