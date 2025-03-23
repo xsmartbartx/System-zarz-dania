@@ -38,7 +38,12 @@ const CourseDetails = () => {
 
   const enrollCourse = async ()=>{
     try {
-
+      if(!userData){
+        return toast.warn('Zaluguj się do kursu')
+      }
+      if(isAlreadyEnrolled){
+        return toast.warn('Już wpisany')
+      }
     } catch (error) {
 
     }
