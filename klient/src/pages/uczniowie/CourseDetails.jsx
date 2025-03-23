@@ -40,7 +40,7 @@ const CourseDetails = () => {
     try {
 
     } catch (error) {
-      
+
     }
   }
 
@@ -80,9 +80,10 @@ const CourseDetails = () => {
               <p>{courseData.zapisaniUczniowie.length} {courseData.zapisaniUczniowie.length
               > 1 ? 'uczniowie': 'uczeń'}</p>
 
-      <p className='text-sm'>Kurs zrobiony przez:<span className='text-blue-underline'>MiejskiSurfer</span></p>
+        <p className='text-sm'>Kurs zrobiony przez:<span className='text-blue-underline'>
+        {courseData.educator.name}</span></p>
       
-      <div className='container mx-auto p-4'>
+        <div className='container mx-auto p-4'>
           <h2 className='text-lg font-semibold text-gray-800'>Co znajdziesz w kursie?</h2>
 
           <div className='flex flex-col space-y-4 mt-4'>
