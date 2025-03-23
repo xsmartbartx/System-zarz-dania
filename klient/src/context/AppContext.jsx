@@ -94,19 +94,24 @@ export const AppContextProvider = (props) => {
     }
 
 
-    const fetchUserZapisanyCourses = async () => {
-        const token = await getToken();
-        const { data } = await axios.get(backendUrl + '/api/user/enrolled-courses',
-         {headers: { Autorization: `Bearer ${token}` }})
+    const fetchUserEnrolledCourses = async () => {
+        try{
+            const token = await getToken();
+            const { data } = await axios.get(backendUrl + '/api/user/enrolled-courses',
+            {headers: { Autorization: `Bearer ${token}` }})
 
-         if(data.success){
-            setEnrolledCourses(data.setEnrolledCourses.reverse())
+            if(data.success){
+                setEnrolledCourses(data.setEnrolledCourses.reverse())
+            }else{
+                toast.error(data.message)
+            }
+        }catch (error){
+            toast.error(data.message)
          }
     }
 
     useEffect(() => {
         fetchAllCourses();
-        fetchUserZapisanyCourses();
     }, [])
 
     const logToken = async ()=>{
