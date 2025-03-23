@@ -12,11 +12,15 @@ import Rating from '../../components/uczniowie/Rating'
 
 const Player = () => {
 
-  const {zapisanyCourses, calculateChapterTime} = useContext(AppContext);
+  const {zapisanyCourses, calculateChapterTime, backendUrl, getToken, userData,
+    fetchUserEnrolledCourses } = useContext(AppContext)
+  
   const {courseId} = useParams();
   const [courseData, setCourseData] = useState(null);
   const [openSections, setOpenSections] = useState({});
   const [playerData, setPlayerData] = useState(null);
+  const [progressData, setProgressData] = useState(null)
+  const [initialRating, setInitialRating] = useState(0)
 
   const getCourseData = () => {
     zapisanyCourses.map(course => {
