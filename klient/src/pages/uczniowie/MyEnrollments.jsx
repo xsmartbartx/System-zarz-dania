@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AppContext } from '../../context/AppContext'
 import { useContext } from 'react'
 import { Line } from 'rc-progress'
@@ -31,6 +31,19 @@ const MyEnrollments = () => {
       toast.error(error.message);
     }
   }
+
+  useEffect(()=>{
+    if(userData){
+      fetchEnrolledCourses()
+    }
+  },[userData])
+
+
+  useEffect(()=>{
+    if(EnrolledCourses.length > 0){
+      getCourseProgress()
+    }
+  },[enrolledCourses])
 
   return (
     <>
