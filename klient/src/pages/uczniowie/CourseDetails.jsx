@@ -19,11 +19,21 @@ const CourseDetails = () => {
 
 
   const {allCourses, calculateRating, calculateChapterTime,
-    calculateNoOfLectures, calculateCourseDuration, currency} = useContext(AppContext);
+    calculateNoOfLectures, calculateCourseDuration, currency, backendUrl, userData} =
+     useContext(AppContext);
 
   const fetchCourseData = async () => {
-    const findCourse = allCourses.find(course => course._id === id)
-    setCourseData(findCourse);
+    try {
+      const {data} = await axios.get(backendUrl + '/api/course/' + id)
+
+      if(data.success){
+        setCourseData(data.courseData)
+      }else{
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(data.message)
+    }
   }
 
   useEffect(() => {
