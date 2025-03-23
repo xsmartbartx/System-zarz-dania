@@ -25,8 +25,11 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    fetchDashboardData()
-  },[])
+    if(isEducator){
+      fetchDashboardData()
+    }
+    
+  },[isEducator])
 
   return dashboardData ? (
     <div>
