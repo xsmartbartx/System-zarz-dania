@@ -7,12 +7,34 @@ import { AppContext } from '../../context/AppContext'
 
 const Navbar = () => {
 
-  const { navigate, isNauczyciel} = useContext(AppContext);
+  const { navigate, isEducator, backendUrl, setIsEducator, getToken} = useContext(AppContext);
 
   const isCourseListPage = location.pathname.includes ('/course-list'); 
 
   const { user } = useUser();
   const { openSignIn } = useClerk();
+
+  const becomeEducator = async ()=>{
+    try {
+      if(isEducator){
+        navigate('/educator')
+        return;
+      }
+      const token = await getToken()
+      const { data } = await axios.get(backendUrl + 'api/educator/update-role',
+        {headers: {Autorization: `Bearer ${token}`}})
+
+      if (data.success){
+        setIsEducator(true)
+        toast.success(data.message)
+      }else{
+        toast.error(data.message)
+      }
+
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
 
   return (
     <div className={`flex justify-between items-center px-4 sm:px-10 md:px-14
@@ -22,7 +44,7 @@ const Navbar = () => {
       <div className='hidden md:flex items-center gap-5 text-gray-500'>
           <div className='flex items-center gap-5'>
             {user && <>
-              <button onClick={()=> {navigate('/nauczyciel')}}>{isNauczyciel ? 'Panel Nauczyciela' : 'Zostań Nauczycielem'}</button>
+              <button onClick={()=> {navigate('/nauczyciel')}}>{isEducator ? 'Panel Nauczyciela' : 'Zostań Nauczycielem'}</button>
             <Link to='/zapisy'>Zapisy</Link>
             </>
             }
@@ -35,7 +57,7 @@ const Navbar = () => {
         <div className='flex items-center gap-1 sm:gap-2 max-sm:text-xs'>
           {user && 
             <>
-              <button onClick={()=> {navigate('/nauczyciel')}}>{isNauczyciel ? 'Panel Nauczyciela' : 'Zostań Nauczycielem'}</button>
+              <button onClick={()=> {navigate('/nauczyciel')}}>{isEducator ? 'Panel Nauczyciela' : 'Zostań Nauczycielem'}</button>
               <Link to='/zapisy'>Moje Zapisy</Link>
             </>
             }
