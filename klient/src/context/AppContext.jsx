@@ -117,7 +117,7 @@ export const AppContextProvider = (props) => {
         currency, allCourses, navigate, fetchAllCourses, calculateRating,
         isNauczyciel, setIsNauczyciel, calculateChapterTime, calculateCourseDuration,
         calculateNoOfLectures, zapisanyCourses, fetchUserZapisanyCourses, isZapisany,
-        setIsZapisany};
+        setIsZapisany, userData, setuserData, getToken, fetchAllCourses};
 
     return (
         <AppContext.Provider value={{value}}>
