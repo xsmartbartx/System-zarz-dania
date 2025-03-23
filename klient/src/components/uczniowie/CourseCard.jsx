@@ -15,7 +15,7 @@ const CourseCard = ({course}) => {
        src={course.courseThumbnail} alt="" />
       <div className='flex flex-col items-center space-y-2'>
         <h3 className='text-base font-semibold'>{course.CourseTitle}</h3>
-        <p className='text-gray-500'>MiejskiSurfer</p>
+        <p className='text-gray-500'>{course.educator.name}</p>
         <div className='flex items-center space-x-2'>
           <p>{calculateRating(course)}</p>
           <div className='flex space-x-1'>
