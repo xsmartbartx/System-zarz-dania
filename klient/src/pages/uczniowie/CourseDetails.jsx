@@ -36,6 +36,14 @@ const CourseDetails = () => {
     }
   }
 
+  const enrollCourse = async ()=>{
+    try {
+
+    } catch (error) {
+      
+    }
+  }
+
   useEffect(() => {
     fetchCourseData();
   }, [allCourses]);
