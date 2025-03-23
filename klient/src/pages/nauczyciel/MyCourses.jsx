@@ -2,19 +2,30 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../context/AppContext'
 // import Ładowanie '../components/uczniowie/Ładowanie'
 
-const MojeKursy = () => {
+const MyCourses = () => {
 
-  const {currency, allCourses} = useContext(AppContext)
+  const {currency, backendUrl, isEducator, getToken} = useContext(AppContext)
   
   const [courses, setCourses] = useState(null)
 
-  const fetchNauczycielCourses = async () => {
-    setCourses(allCourses)
+  const fetchEducatorCourses = async () => {
+    try {
+      const token = await getToken()
+      const { data } = await axios.get(backendUrl + '/api/educator/courses',
+        {headers: { Autorization: `Bearer ${token}` }})
+
+        data.success && setCourses(data.courses)
+
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
   useEffect(() => {
-    fetchNauczycielCourses()
-  }, [])
+    if(isEducator){
+      fetchEducatorCourses()
+    }
+  }, [isEducator])
 
   return courses ? (
     <div>
@@ -49,4 +60,4 @@ const MojeKursy = () => {
   ) : <Loading />
 }
 
-export default MojeKursy
+export default MyCourses
