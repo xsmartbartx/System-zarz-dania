@@ -123,15 +123,20 @@ const Player = () => {
               <ul className='list-disc list-inside'>
                 {chapter.chapterContent.map((lecture, i) => (
                 <li key={i} className='flex items-center space-x-2'>
-                  <img className={`transform transition-transform ${openSections[index] ?
-                    'block' : 'hidden'}`} src={false ? assets.blue_tick_icon : assets.play_icon} alt='play icon' />
+                  <img className={`transform transition-transform ${openSections[index]
+                   ? 'block' : 'hidden'}`} src={progressData && progressData.
+                    lectureCompleted.includes(lecture.lectureId) ? assets.blue_tick_icon :
+                    assets.play_icon} alt='play icon' />
                     <div>
                       <p className='text-sm'>{lecture.lectureTitle}</p>
                         <div className='flex items-center space-x-2'>
-                          {lecture.lectureUrl && <p onClick={()=> 
-                            setPlayerData({...lecture, chapter: index +1, lecture: i + 1})}
-                              >Podgląd</p>}
-                          <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000, {units: ['g', 'm']})}</p>
+                          {lecture.lectureUrl && <p
+                           onClick={()=> setPlayerData({
+                            ...lecture, chapter: index +1, lecture: i + 1
+                          })}
+                          className='text-blue-500 cursor-pointer'>Oglądaj</p>}
+                          <p>{humanizeDuration(lecture.lectureDuration * 60 * 1000,
+                           {units: ['g', 'm']})}</p>
                         </div>
                       </div>
                 </li>
@@ -143,7 +148,7 @@ const Player = () => {
       </div>
       <div className='container mx-auto p-4'>
         <h1 className='text-x1 font-bold'>Oceń ten kurs</h1>
-          <Rating initialRating={0} />
+          <Rating initialRating={initialRating} onRate={handleRate} />
       </div>
     </div>
 
@@ -155,7 +160,9 @@ const Player = () => {
         <div>
           <p>{playerData.chapter}.{playerData.lecture} 
             {playerData.lectureTitle}</p>
-            <button className='text=blue-600'>{false ? 'Ukończone' : 'Zaznacz jako zaliczone'}}</button>
+            <button  onClick={()=> markLectureAsCompleted(playerData.lectureId)}
+             className='text=blue-600'>{progressData && progressData.
+              lectureCompleted.includes(playerData.lectureId) ? 'Ukończone' : 'Zaznacz jako zaliczone'}}</button>
         </div>
       </div>
       )
@@ -167,7 +174,7 @@ const Player = () => {
   <Footer />
 
 </>
-  )
+  ) : <Loading />
 }
 
 export default Player
