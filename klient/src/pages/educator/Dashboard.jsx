@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
 import { AppContext } from '../../context/AppContext'
 import { assets, dummyDashboardData } from '../../assets/assets'
+import Loading from '../../components/student/Loading'
 
 const Dashboard = () => {
 
