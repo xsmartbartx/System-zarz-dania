@@ -68,7 +68,7 @@ export const AppContextProvider = (props) => {
         course.courseRatings.forEach(rating => {
             totalRating += rating.rating;
         });
-        return totalRating / course.courseRatings.length;
+        return Math.floor(totalRating / course.courseRatings.length)
     };
 
     const calculateChapterTime = (chapter) => {
