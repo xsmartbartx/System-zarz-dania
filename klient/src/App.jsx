@@ -5,7 +5,7 @@ import CourseList from './pages/uczniowie/CourseList.jsx';
 import CourseDetails from './pages/uczniowie/CourseDetails.jsx';
 import Zapisy from './pages/uczniowie/Zapisy.jsx';
 import Osoba from './pages/uczniowie/Osoba.jsx';
-import Ładowanie from './components/uczniowie/Ładowanie.jsx';
+import Ładowanie from './components/uczniowie/Loading.jsx';
 import Nauczyciel from './pages/nauczyciel/Nauczyciel.jsx';
 import Panel from './pages/nauczyciel/Panel.jsx';
 import DodajKurs from './pages/nauczyciel/DodajKurs.jsx';
