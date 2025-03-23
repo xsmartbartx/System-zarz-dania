@@ -3,7 +3,7 @@ import uniqid from 'unigid';
 import Quill from 'quill';
 import { assets } from '../../assets/assets';
 
-const DodajKurs = () => {
+const AddCourses = () => {
 
   const { backendUrl, getToken } = useContext(AppContext)
   const quillRef = useRef(null);
@@ -16,7 +16,7 @@ const DodajKurs = () => {
   const [chapters, setChapters] = useState([]);
   const [currentChapterId, setCurrentChapterId] = useState(null);
 
-  const [lecturedetails, setLectureDetails] = useState(
+  const [lectureDetails, setLectureDetails] = useState(
     {
       lectureTitle: '',
       lectureDuration: '',
@@ -242,4 +242,4 @@ const DodajKurs = () => {
   )
 }
 
-export default DodajKurs
+export default AddCourses
