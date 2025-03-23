@@ -2,25 +2,33 @@ import React from 'react'
 import { AppContext } from '../../context/AppContext'
 import { useContext } from 'react'
 import { Line } from 'rc-progress'
+import { data } from 'react-router-dom'
 
 const MyEnrollments = () => {
 
-  const {zapisanyCourses, calculateCourseDuration, navigate, userData,
+  const {EnrolledCourses, calculateCourseDuration, navigate, userData,
     fetchEnrolledCourses, backendUrl, getToken, calculateNoOfLectures } =
      useContext(AppContext);
 
   const [progressArray, setProgressArray] = useState([])
 
-  const getCorseProgress = async ()=>{
+  const getCourseProgress = async ()=>{
     try {
       const token = await getToken();
       const tempProgressArray = await Promise.all(
         userEnrolledCourses.map(async (course)=>{
-          const {data} = await axios.post(`${backendUrl}/api/user/get-course-progress`,{})
-        })
-      )
-    } catch (error) {
+          const {data} = await axios.post(`${backendUrl}/api/user/get-course-progress`,
+            {courseId: course._id}, {headers: { Autorization: `Bearer ${token}` }})
+        let totalLectures = calculateNoOfLectures(course);
+      const lectureCompleted = data.progressData ? data.progressData.
+      lectureCompleted.length : 0;
+      return {totalLectures, lectureCompleted}
+      })
+    )
+    setProgressArray(tempProgressArray);
 
+    } catch (error) {
+      toast.error(error.message);
     }
   }
 
