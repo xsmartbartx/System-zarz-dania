@@ -34,15 +34,35 @@ const Player = () => {
       }
     });
   }
-
-  useEffect(() => {
-    fetchCourseData();
-  }, [zapisanyCourses]);
   
   const toggleSection = (index) => {
-    setopenSections((prev)=>({...prev, [index]: !prev[index],
-    }));
+    setopenSections((prev)=>({...prev,
+      [index]: !prev[index],
+      }
+    ));
   };
+
+  useEffect(() => {
+    if (userEnrolledCourses.length > 0){
+      getCourseData()
+    }
+  }, [enrolledCourses])
+
+  const markLectureAsCompleted = async (lectureId)=>{
+    try {
+      const token = await getToken()
+      const { data } = await axios.post(backendUrl + '/api/user/update-course-progress',
+       {courseId, lectureId}, { headers: { Autorization: `Bearer ${token}` }})
+
+       if (data.success){
+        toast.success(data.message)
+       }else{
+        toast.error(data.message)
+       }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
 
   return (
 <>
