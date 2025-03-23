@@ -40,13 +40,23 @@ export const AppContextProvider = (props) => {
     };
 
     const fetchUserData = async ()=>{
+
+        if(user.publicMetadata.role === 'educator'){
+            setIsNauczyciel(true)
+        }
         try {
             const token = await getToken();
 
             const {data} = await axios.get(backendUrl + '/api/cporses/data', {headers: 
             {Autorization: `Bearer ${token}`}})
-        } catch (error) {
 
+            if(data.success){
+                setuserData(data.user)
+            }else{
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.message)
         }
     }
 
