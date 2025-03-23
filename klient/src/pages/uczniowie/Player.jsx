@@ -25,7 +25,12 @@ const Player = () => {
   const getCourseData = () => {
     zapisanyCourses.map(course => {
       if (course._id === courseId) {
-        setCourseData(course);
+        setCourseData(course)
+        course.courseRatings.map((item)=>{
+          if(item.userId === userData._id){
+            setInitialRating(item.rating)
+          }
+        })
       }
     });
   }
