@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { data, useParams } from 'react-router-dom'
 import { useContext } from 'react'
 import { AppContext } from '../../context/AppContext'
 import Ładowanie from '../../components/Ładowanie'
@@ -19,8 +19,8 @@ const CourseDetails = () => {
 
 
   const {allCourses, calculateRating, calculateChapterTime,
-    calculateNoOfLectures, calculateCourseDuration, currency, backendUrl, userData} =
-     useContext(AppContext);
+    calculateNoOfLectures, calculateCourseDuration, currency, backendUrl, userData,
+    getToken} = useContext(AppContext);
 
   const fetchCourseData = async () => {
     try {
@@ -44,14 +44,32 @@ const CourseDetails = () => {
       if(isAlreadyEnrolled){
         return toast.warn('Już wpisany')
       }
-    } catch (error) {
 
+      const token = await getToken();
+
+      const {data} = await axios.post(backendUrl + '/api/user/purchase', {courseId:
+        courseData._id}, {headers: { Autorization: `Bearer ${token}` }})
+      if (data.success) {
+         const {session_url} = data
+        window.location.replace(session_url)
+      }else{
+        toast.error(data.message)
+      }
+
+    } catch (error) {
+      toast.error(data.message)
     }
   }
 
   useEffect(() => {
     fetchCourseData();
   }, [allCourses]);
+
+  useEffect(() => {
+   if(userData && courseData){
+    setIsAlreadyEWnrolled(userData.enrolledCourses.includes(courseData._id))
+   }
+  }, [userData, ]);
 
   const toggleSection = (index) => {
     setopenSections((prev)=>({...prev, [index]: !prev[index],
@@ -179,7 +197,7 @@ const CourseDetails = () => {
 
       </div>
 
-      <button className='md:mt-6 mt-4 w-full py-3 rounded bg-blue-600 text-white
+      <button onClick={enrollCourse} className='md:mt-6 mt-4 w-full py-3 rounded bg-blue-600 text-white
        font medium'>{isAlreadyZapisany ? 'Already Zapisany' : 'Zapisz teraz'}</button>
 
 
