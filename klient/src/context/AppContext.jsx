@@ -39,6 +39,17 @@ export const AppContextProvider = (props) => {
         }
     };
 
+    const fetchUserData = async ()=>{
+        try {
+            const token = await getToken();
+
+            const {data} = await axios.get(backendUrl + '/api/cporses/data', {headers: 
+            {Autorization: `Bearer ${token}`}})
+        } catch (error) {
+
+        }
+    }
+
     const calculateRating = (course) => {
         if (course.courseRatings.length === 0) {
             return 0;
