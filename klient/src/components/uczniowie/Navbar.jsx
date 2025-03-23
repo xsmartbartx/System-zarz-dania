@@ -44,7 +44,7 @@ const Navbar = () => {
       <div className='hidden md:flex items-center gap-5 text-gray-500'>
           <div className='flex items-center gap-5'>
             {user && <>
-              <button onClick={()=> {navigate('/nauczyciel')}}>{isEducator ? 'Panel Nauczyciela' : 'Zostań Nauczycielem'}</button>
+              <button onClick={becomeEducator}>{isEducator ? 'Panel Nauczyciela' : 'Zostań Nauczycielem'}</button>
             <Link to='/zapisy'>Zapisy</Link>
             </>
             }
@@ -57,7 +57,7 @@ const Navbar = () => {
         <div className='flex items-center gap-1 sm:gap-2 max-sm:text-xs'>
           {user && 
             <>
-              <button onClick={()=> {navigate('/nauczyciel')}}>{isEducator ? 'Panel Nauczyciela' : 'Zostań Nauczycielem'}</button>
+              <button onClick={becomeEducator}>{isEducator ? 'Panel Nauczyciela' : 'Zostań Nauczycielem'}</button>
               <Link to='/zapisy'>Moje Zapisy</Link>
             </>
             }
