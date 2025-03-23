@@ -3,7 +3,7 @@ import { Route, Routes, useMatch } from 'react-router-dom';
 import Główna from './pages/uczniowie/Główna.jsx';
 import CourseList from './pages/uczniowie/CourseList.jsx';
 import CourseDetails from './pages/uczniowie/CourseDetails.jsx';
-import Zapisy from './pages/uczniowie/Zapisy.jsx';
+import Zapisy from './pages/uczniowie/MyEnrollments.jsx';
 import Osoba from './pages/uczniowie/Osoba.jsx';
 import Ładowanie from './components/uczniowie/Loading.jsx';
 import Nauczyciel from './pages/nauczyciel/Nauczyciel.jsx';
