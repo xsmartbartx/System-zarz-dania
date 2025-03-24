@@ -2,7 +2,7 @@ import React from 'react'
 import Hero from '../../components/uczniowie/Hero'
 import Companies from '../../components/uczniowie/Companies'
 import CourseSection from '../../components/uczniowie/CourseSection'
-import Referencje from '../../components/uczniowie/Referencje'
+import Refferentials from '../../components/uczniowie/Referencje'
 import CallToAction from '../../components/uczniowie/CallToAction'
 import Footer from '../../components/uczniowie/Footer'
 
@@ -12,7 +12,7 @@ const Main = () => {
       <Hero />
       <Companies />
       <CourseSection />
-      <Referencje />
+      <Refferentials />
       <CallToAction />
       <Footer />
     </div>
