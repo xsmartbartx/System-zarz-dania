@@ -7,12 +7,12 @@ import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
 import YouTube from 'react-youtube'
 import Footer from '../../components/Footer'
-import Rating from '../../components/uczniowie/Rating'
+import Rating from '../../components/students/Rating'
 
 
 const Player = () => {
 
-  const {zapisanyCourses, calculateChapterTime, backendUrl, getToken, userData,
+  const {enrolledCourses, calculateChapterTime, backendUrl, getToken, userData,
     fetchUserEnrolledCourses } = useContext(AppContext)
   
   const {courseId} = useParams();
@@ -23,7 +23,7 @@ const Player = () => {
   const [initialRating, setInitialRating] = useState(0)
 
   const getCourseData = () => {
-    zapisanyCourses.map(course => {
+    enrolledCourses.map(course => {
       if (course._id === courseId) {
         setCourseData(course)
         course.courseRatings.map((item)=>{
@@ -104,7 +104,7 @@ const Player = () => {
 
   return courseData ? (
 <>
-    <div className='p-4 sm:p-10 flex flex-xol-reverse md:grid md:grid-cols-2 gap-10 md:px-36'>        <div className='container mx-auto p-4'>
+    <div className='p-4 sm:p-10 flex flex-xol-reverse md:grid md:grid-cols-2 gap-10 md:px-36'>
       <h2 className='text-lg font-semibold text-gray-800'>Co znajdziesz w kursie?</h2>
 
       <div className='flex flex-col space-y-4 mt-4'>
@@ -170,7 +170,7 @@ const Player = () => {
       <img src={courseData ? courseData.courseThumbnail : ''} alt="" />
       }
     </div>
-  </div>
+  
   <Footer />
 
 </>
