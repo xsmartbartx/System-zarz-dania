@@ -48,9 +48,9 @@ const MyCourses = () => {
                 <img src={course.courseThumbnail} alt="Wygląd kursu" />
                 <span>{course.courseTitle}</span>
               </td>
-              <td>{currency} {Math.floor(course.zapisaniUczniowie.length * 
+              <td>{currency} {Math.floor(course.enrolledStudents.length * 
                 (course.coursePrice - course.discount * course.coursePrice / 100))}</td>
-              <td>{course.zapisaniUczniowie.length}</td>
+              <td>{course.enrolledStudents.length}</td>
               <td>{newDate(course.createdAt).toLocateString()}</td>
             </tr>
           ))}
