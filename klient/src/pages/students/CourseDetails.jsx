@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { data, useParams } from 'react-router-dom'
 import { useContext } from 'react'
 import { AppContext } from '../../context/AppContext'
-import Ładowanie from '../../components/Ładowanie'
+import Loading from '../../components/Loading'
 import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
 import Footer from '../../components/Footer'
@@ -14,7 +14,7 @@ const CourseDetails = () => {
 
   const [courseData, setCourseData] = useState(null);
   const [openSections, setopenSections] = useState({});
-  const [isAlreadyZapisany, setIsAlreadyZapisany] = useState(false);
+  const [isAlreadyEnrolled, setIsAlreadyEnrolled] = useState(false);
   const [playerData, setPlayerData] = useState(null);
 
 
@@ -67,7 +67,7 @@ const CourseDetails = () => {
 
   useEffect(() => {
    if(userData && courseData){
-    setIsAlreadyEWnrolled(userData.enrolledCourses.includes(courseData._id))
+    setIsAlreadyEnrolled(userData.enrolledCourses.includes(courseData._id))
    }
   }, [userData, ]);
 
@@ -100,7 +100,7 @@ const CourseDetails = () => {
                 <p className='text-gray-500'>{courseData.courseRatings.length} {courseData.courseRatings.length > 1 ? 'ratings' : 'rating'}</p>
               </div>
       
-              <p>{courseData.zapisaniUczniowie.length} {courseData.zapisaniUczniowie.length
+              <p>{courseData.enrolledStudents.length} {courseData.enrolledStudents.length
               > 1 ? 'uczniowie': 'uczeń'}</p>
 
         <p className='text-sm'>Kurs zrobiony przez:<span className='text-blue-underline'>
@@ -198,7 +198,7 @@ const CourseDetails = () => {
       </div>
 
       <button onClick={enrollCourse} className='md:mt-6 mt-4 w-full py-3 rounded bg-blue-600 text-white
-       font medium'>{isAlreadyZapisany ? 'Already Zapisany' : 'Zapisz teraz'}</button>
+       font medium'>{isAlreadyEnrolled ? 'Already Zapisany' : 'Zapisz teraz'}</button>
 
 
       <div className='pt-6'>
@@ -215,7 +215,7 @@ const CourseDetails = () => {
   </div>
   <Footer />
   </>
-  ) : <Ładowanie />;
+  ) : <Loading />;
 }
 
 export default CourseDetails
