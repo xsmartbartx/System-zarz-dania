@@ -19,8 +19,8 @@ export const AppContextProvider = (props) => {
     const {user} = useUser()
 
     const [allCourses, setAllCourses] = useState([]);
-    const [isNauczyciel, setIsNauczyciel] = useState(false);
-    const [isZapisany, setIsZapisany] = useState([]);
+    const [isEducator, setIsEducator] = useState(false);
+    const [isEnrolled, setIsEnrolled] = useState([]);
     const [userData, setuserData] = useState([null]);
 
     const fetchAllCourses = async () => {
@@ -42,7 +42,7 @@ export const AppContextProvider = (props) => {
     const fetchUserData = async ()=>{
 
         if(user.publicMetadata.role === 'educator'){
-            setIsNauczyciel(true)
+            setIsEducator(true)
         }
         try {
             const token = await getToken();
@@ -126,9 +126,9 @@ export const AppContextProvider = (props) => {
 
     const value = {
         currency, allCourses, navigate, fetchAllCourses, calculateRating,
-        isNauczyciel, setIsNauczyciel, calculateChapterTime, calculateCourseDuration,
-        calculateNoOfLectures, zapisanyCourses, fetchUserZapisanyCourses, isZapisany,
-        setIsZapisany, userData, setuserData, getToken, fetchAllCourses};
+        isEducator, setIsEducator, calculateChapterTime, calculateCourseDuration,
+        calculateNoOfLectures, EnrolledCourses, fetchUserEnrolledCourses, isEnrolled,
+        setIsEnrolled, userData, setuserData, getToken, fetchAllCourses};
 
     return (
         <AppContext.Provider value={{value}}>
