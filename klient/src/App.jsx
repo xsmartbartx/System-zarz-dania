@@ -1,42 +1,43 @@
 import React from 'react';
 import { Route, Routes, useMatch } from 'react-router-dom';  
-import Główna from './pages/uczniowie/Główna.jsx';
-import CourseList from './pages/uczniowie/CourseList.jsx';
-import CourseDetails from './pages/uczniowie/CourseDetails.jsx';
-import Zapisy from './pages/uczniowie/MyEnrollments.jsx';
-import Osoba from './pages/uczniowie/Osoba.jsx';
-import Ładowanie from './components/uczniowie/Loading.jsx';
-import Nauczyciel from './pages/nauczyciel/Nauczyciel.jsx';
-import Panel from './pages/nauczyciel/Panel.jsx';
-import DodajKurs from './pages/nauczyciel/DodajKurs.jsx';
-import MojeKursy from './pages/nauczyciel/MojeKursy.jsx';
-import ZapisyStudentów from './pages/nauczyciel/ZapisyStudentów.jsx';
-import Navbar from './components/nauczyciel/Navbar.jsx';
+import Main from './pages/students/Main.jsx';
+import CourseList from './pages/students/CourseList.jsx';
+import CourseDetails from './pages/students/CourseDetails.jsx';
+import MyEnrollments from './pages/students/MyEnrollments.jsx';
+import Player from './pages/students/Player.jsx';
+import Loading from './components/students/Loading.jsx';
+import Educator from './pages/educator/Educator.jsx';
+import Panel from './pages/educator/Panel.jsx';
+import AddCourse from './pages/educator/AddCourse.jsx';
+import MyCourses from './pages/educator/MyCourses.jsx';
+import StudentsEnrollments from './pages/educator/StudentsEnrollments.jsx';
+import Navbar from './components/educator/Navbar.jsx';
 import "quill/dist/quill.snow.css";
 import { ToastContainer, toast } from 'react=toastify';
+import Loading from './components/students/Loading.jsx';
 
 const App = () => {
 
-  const isNauczycielRoute = useMatch('/nauczyciel/*');
+  const isEducatorRoute = useMatch('/educator/*');
 
   return (
     <div className='text-default min-h-screen bg-white'>
       <ToastContainer />
-      {!isNauczycielRoute && <Navbar />}
+      {!isEducatorRoute && <Navbar />}
       <Navbar />
       <Routes>
-        <Route path='/' element={<Główna />} />
+        <Route path='/' element={<Main />} />
         <Route path='/course-list' element={<CourseList />} />
         <Route path='/course-list/:input' element={<CourseList />} />
         <Route path='/course/:id' element={<CourseDetails />} />
-        <Route path='/zapisy' element={<Zapisy />} />
-        <Route path='/osoba/course:id' element={<Osoba />} />
-        <Route path='/loading/:path' element={<Ładowanie />} />
-        <Route path='/nauczyciel' element={<Nauczyciel />} />
-          <Route path='/nauczyciel' element={<Panel />} />
-          <Route path='/dodaj-kurs' element={<DodajKurs />} />
-          <Route path='/moje-kursy' element={<MojeKursy />} />
-          <Route path='/zapisy-studentów' element={<ZapisyStudentów />} />
+        <Route path='/my-enrollments' element={<MyEnrollments />} />
+        <Route path='/player/course:id' element={<Player />} />
+        <Route path='/loading/:path' element={<Loading />} />
+        <Route path='/educator' element={<Educator />} />
+          <Route path='/educator' element={<Panel />} />
+          <Route path='/add-course' element={<AddCourse />} />
+          <Route path='/my-courses' element={<MyCourses />} />
+          <Route path='/students-enrollements' element={<StudentsEnrollments />} />
           
 
       </Routes>
