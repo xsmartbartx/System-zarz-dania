@@ -1,6 +1,9 @@
 import React, {useContext, useEffect, useRef, useState} from 'react'
-import uniqid from 'unigid';
+import uniqid from 'uniqid';
 import Quill from 'quill';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { AppContext } from '../../context/AppContext';
 import { assets } from '../../assets/assets';
 
 const AddCourses = () => {
@@ -15,6 +18,7 @@ const AddCourses = () => {
   const [image, setImage] = useState(null)
   const [chapters, setChapters] = useState([]);
   const [currentChapterId, setCurrentChapterId] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   const [lectureDetails, setLectureDetails] = useState(
     {
@@ -92,7 +96,8 @@ const AddCourses = () => {
     try {
       e.preventDefault()
       if(!image){
-        TransformStream.error('Ikonka nie wybrana')
+        toast.error('Ikonka nie wybrana')
+        return;
       }
 
       const courseData = {
@@ -105,11 +110,11 @@ const AddCourses = () => {
 
       const formData = new FormData()
       formData.append('courseData', JSON.stringify(courseData))
-      formData.append('imae', image)
+      formData.append('image', image)
 
       const token = await getToken()
       const {data} = await axios.post(backendUrl + '/api/educator/add-course',
-        formData, { headers: { Autorization: `Bearer ${token}` }})
+        formData, { headers: { Authorization: `Bearer ${token}` }})
 
       if (data.success){
         toast.success(data.message)
@@ -136,7 +141,7 @@ const AddCourses = () => {
   }, [])
 
   return (
-    <div>
+    <div className="add-course-container">
       <form onSubmit={handleSubmit}>
         <div>
           <p>Tytuł kursu</p>
@@ -172,11 +177,11 @@ const AddCourses = () => {
         </div>
         <div>
           {chapters.map((chapter, chapterIndex) =>(
-            <div key={chapterIndex}>
-              <div>
+            <div key={chapterIndex} className="chapter-item">
+              <div className="chapter-header">
                 <div>
                   <img onClick={() => handleChapter('toggle', chapter.chapterId)} src={assets.dropdown_icon} width={14} alt="" />
-                  <span>{chapterIndex + 1} {chapter.courseTitle}</span>
+                  <span>{chapterIndex + 1}. {chapter.chapterTitle}</span>
                 </div>
                 <span>{chapter.chapterContent.length} Wyklady</span>
                 <img onClick={() => handleChapter('remove', chapter.chapterId)} src={assets.cross_icon} alt="" />
@@ -204,8 +209,8 @@ const AddCourses = () => {
           </div>
 
           {showPopup && (
-            <div>
-              <div>
+            <div className="popup-overlay">
+              <div className="popup-content">
                 <h2>Dodaj wykład</h2>
 
                 <div>
@@ -223,10 +228,17 @@ const AddCourses = () => {
                 </div>
 
                 <div>
+                  <p>Link do wykładu</p>
+                  <input type="text" value={lectureDetails.lectureUrl}
+                   onChange={(e) => setLectureDetails({...lectureDetails,
+                    lectureUrl: e.target.value})} />
+                </div>
+
+                <div>
                   <p>Czy podgląd jest darmowy?</p>
                   <input type="checkbox" checked={lectureDetails.isPreviewFree}
                    onChange={(e) => setLectureDetails({...lectureDetails,
-                    lectureUrl: e.target.value})} />
+                    isPreviewFree: e.target.checked})} />
                 </div>
                 
                 <button type='button' onClick={addLecture}>Dodaj</button>
