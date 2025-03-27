@@ -77,7 +77,10 @@ const CourseDetails = () => {
   };
 
   return courseData ? (
-  <>
+    <>
+      {/* Content of the component */}
+
+
     <div className='course-details'>
       
       <div className='absolute top-0 left-0 w-full h-section-height'></div>
@@ -213,9 +216,11 @@ const CourseDetails = () => {
       </div>
 
   </div>
-  <Footer />
-  </>
-  ) : <Loading />;
+      <Footer />
+    </>
+  ) : (
+    <Loading />
+  );
 }
 
 export default CourseDetails
