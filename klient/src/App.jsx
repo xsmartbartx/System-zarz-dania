@@ -5,7 +5,7 @@ import CourseList from './pages/students/CourseList.jsx';
 import CourseDetails from './pages/students/CourseDetails.jsx';
 import MyEnrollments from './pages/students/MyEnrollments.jsx';
 import Player from './pages/students/Player.jsx';
-import Loading from './components/students/Loading.jsx';
+// Removed duplicate import of Loading
 import Educator from './pages/educator/Educator.jsx';
 import Panel from './pages/educator/Panel.jsx';
 import AddCourse from './pages/educator/AddCourse.jsx';
