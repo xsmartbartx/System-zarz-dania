@@ -1,4 +1,3 @@
-import React from 'react';
 import { Route, Routes, useMatch } from 'react-router-dom';  
 import Main from './pages/students/Main.jsx';
 import CourseList from './pages/students/CourseList.jsx';
@@ -13,7 +12,7 @@ import MyCourses from './pages/educator/MyCourses.jsx';
 import StudentsEnrollments from './pages/educator/StudentsEnrollments.jsx';
 import Navbar from './components/educator/Navbar.jsx';
 import "quill/dist/quill.snow.css";
-import { ToastContainer, toast } from 'react=toastify';
+import { ToastContainer } from 'react=toastify';
 import Loading from './components/students/Loading.jsx';
 
 const App = () => {
