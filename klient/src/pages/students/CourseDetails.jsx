@@ -152,7 +152,7 @@ const CourseDetails = () => {
 
         <div className='container mx-auto p-4'>
           <h3 className='text-x1 font-semibold text-gray-800'>Opis Kursu</h3>
-          <p className='pt-4 md:text-bsae text-sm'
+          <p className='pt-4 md:text-base text-sm'
           dangerouslySetInnerHTML={{__html: courseData.courseDescription}}></p>
         </div>
       </div>
@@ -172,8 +172,8 @@ const CourseDetails = () => {
           </div>
       </div>
 
-      <div className='flex gap-3 itmes-center pt-2'>
-          <p className='text-gray-800 md:text-4x1 text-2x1 font-semibold'>{currency}{(courseData.coursePrice - courseData.discount * 
+      <div className='flex gap-3 items-center pt-2'>
+          <p className='text-gray-800 md:text-4xl text-2xl font-semibold'>{currency}{(courseData.coursePrice - courseData.discount * 
             courseData.coursePrice /100).toFixed(2)}</p>
             <p className='md:text-lg text-gray-500 line-through'>{currency}
               {courseData.coursePrice}</p>
@@ -202,8 +202,9 @@ const CourseDetails = () => {
 
       </div>
 
-      <button onClick={enrollCourse} className='md:mt-6 mt-4 w-full py-3 rounded bg-blue-600 text-white
-       font medium'>{isAlreadyEnrolled ? 'Already Zapisany' : 'Zapisz teraz'}</button>
+      <button onClick={enrollCourse} className='md:mt-6 mt-4 w-full py-3 rounded bg-blue-600 text-white font-medium'>
+        {isAlreadyEnrolled ? 'Już zapisany' : 'Zapisz teraz'}
+      </button>
 
 
       <div className='pt-6'>
