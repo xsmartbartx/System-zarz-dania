@@ -25,17 +25,15 @@ const Player = () => {
   const [initialRating, setInitialRating] = useState(0)
 
   const getCourseData = () => {
-    enrolledCourses.map(course => {
-      if (course._id === courseId) {
-        setCourseData(course)
-        course.courseRatings.map((item)=>{
-          if(item.userId === userData._id){
-            setInitialRating(item.rating)
-          }
-        })
+    const course = enrolledCourses.find(course => course._id === courseId);
+    if (course) {
+      setCourseData(course);
+      const userRating = course.courseRatings.find(item => item.userId === userData._id);
+      if (userRating) {
+        setInitialRating(userRating.rating);
       }
-    });
-  }
+    }
+  };
   
   const toggleSection = (index) => {
     setOpenSections((prev) => ({
@@ -45,10 +43,11 @@ const Player = () => {
   };
 
   useEffect(() => {
-    if (enrolledCourses.length > 0){
-      getCourseData()
+    if (enrolledCourses.length > 0) {
+      getCourseData();
+      getCourseProgress();
     }
-  }, [enrolledCourses, userData._id])
+  }, [enrolledCourses, userData._id, courseId]);
 
   const markLectureAsCompleted = async (lectureId) => {
     try {
@@ -76,7 +75,7 @@ const Player = () => {
         {courseId}, { headers: { Authorization: `Bearer ${token}`}})
 
         if (data.success){
-          toast.success(data.message)
+          setProgressData(data.progress);
         }else{
           toast.error(data.message)
         }
@@ -160,7 +159,7 @@ const Player = () => {
       {playerData ? (
       <div>
         <YouTube videoId={playerData.lectureUrl.split('/').pop()}
-          iframeClassName='ww-full aspect-video'/>
+          iframeClassName='w-full aspect-video'/>
         <div>
           <p>{playerData.chapter}.{playerData.lecture} 
             {playerData.lectureTitle}</p>
