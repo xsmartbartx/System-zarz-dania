@@ -7,6 +7,7 @@ import { assets } from '../../assets/assets'
 import humanizeDuration from 'humanize-duration'
 import Footer from '../../components/Footer'
 import Youtube from 'react-youtube'
+import { toast } from 'react-toastify'; // Ensure toast is imported
 
 const CourseDetails = () => {
 
@@ -24,17 +25,17 @@ const CourseDetails = () => {
 
   const fetchCourseData = async () => {
     try {
-      const {data} = await axios.get(backendUrl + '/api/course/' + id)
+      const { data } = await axios.get(backendUrl + '/api/course/' + id);
 
-      if(data.success){
-        setCourseData(data.courseData)
-      }else{
-        toast.error(data.message)
+      if (data.success) {
+        setCourseData(data.courseData);
+      } else {
+        toast.error(data.message);
       }
     } catch (error) {
-      toast.error(data.message)
+      toast.error(error.response?.data?.message || error.message); // Improved error handling
     }
-  }
+  };
 
   const enrollCourse = async () => {
     try {
@@ -69,10 +70,10 @@ const CourseDetails = () => {
   }, [allCourses]);
 
   useEffect(() => {
-   if(userData && courseData){
-    setIsAlreadyEnrolled(userData.enrolledCourses.includes(courseData._id))
-   }
-  }, [userData, ]);
+    if (userData && courseData) {
+      setIsAlreadyEnrolled(userData.enrolledCourses.includes(courseData._id));
+    }
+  }, [userData, courseData]); // Fixed dependency array
 
   const toggleSection = (index) => {
     setopenSections((prev)=>({...prev, [index]: !prev[index],
