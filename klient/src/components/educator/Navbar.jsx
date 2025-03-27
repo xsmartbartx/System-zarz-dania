@@ -4,7 +4,7 @@ import { UserButton, userButton, useUser } from '@clerk/clerk-react';
 import { Link } from  'react-router-dom';
 
 const Navbar = () => {
-  const NauczycielData = dummyEducatorData
+  const EducatorData = dummyEducatorData
   const { user } = useUser()
 
   return (
