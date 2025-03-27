@@ -8,7 +8,9 @@ import humanizeDuration from 'humanize-duration'
 import YouTube from 'react-youtube'
 import Footer from '../../components/Footer'
 import Rating from '../../components/students/Rating'
-
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import Loading from '../../components/Loading'
 
 const Player = () => {
 
@@ -36,43 +38,45 @@ const Player = () => {
   }
   
   const toggleSection = (index) => {
-    setopenSections((prev)=>({...prev,
+    setOpenSections((prev) => ({
+      ...prev,
       [index]: !prev[index],
-      }
-    ));
+    }));
   };
 
   useEffect(() => {
-    if (userEnrolledCourses.length > 0){
+    if (enrolledCourses.length > 0){
       getCourseData()
     }
-  }, [enrolledCourses])
+  }, [enrolledCourses, userData._id])
 
-  const markLectureAsCompleted = async (lectureId)=>{
+  const markLectureAsCompleted = async (lectureId) => {
     try {
       const token = await getToken()
-      const { data } = await axios.post(backendUrl + '/api/user/update-course-progress',
-       {courseId, lectureId}, { headers: { Autorization: `Bearer ${token}` }})
+      const { data } = await axios.post(
+        backendUrl + '/api/user/update-course-progress',
+        { courseId, lectureId },
+        { headers: { Authorization: `Bearer ${token}` }}
+      )
 
-       if (data.success){
+      if (data.success) {
         toast.success(data.message)
-       }else{
+      } else {
         toast.error(data.message)
-       }
+      }
     } catch (error) {
       toast.error(error.message)
     }
   }
 
-  const getCourseProgress = async ()=>{
+  const getCourseProgress = async ()=> {
     try {
       const token = await getToken()
       const { data } = await axios.post(backendUrl + '/api/user/get-course-progress',
-        {courseId}, { headers: { Autorization: `Bearer ${token}`}})
+        {courseId}, { headers: { Authorization: `Bearer ${token}`}})
 
         if (data.success){
           toast.success(data.message)
-          getCourseProgress()
         }else{
           toast.error(data.message)
         }
@@ -81,11 +85,11 @@ const Player = () => {
     }
   }
 
-  const handleRate = async (rating)=>{
+  const handleRate = async (rating)=> {
     try {
       const token = await getToken()
       const { data } = await axios.post(backendUrl + '/api/user/add-rating',
-        {courseId, rating}, {headers: { Autorization: `Bearer ${token}` }})
+        {courseId, rating}, {headers: { Authorization: `Bearer ${token}` }})
 
         if (data.success) {
           toast.success(data.message)
@@ -104,7 +108,7 @@ const Player = () => {
 
   return courseData ? (
 <>
-    <div className='p-4 sm:p-10 flex flex-xol-reverse md:grid md:grid-cols-2 gap-10 md:px-36'>
+    <div className='p-4 sm:p-10 flex flex-col-reverse md:grid md:grid-cols-2 gap-10 md:px-36'>
       <h2 className='text-lg font-semibold text-gray-800'>Co znajdziesz w kursie?</h2>
 
       <div className='flex flex-col space-y-4 mt-4'>
@@ -160,9 +164,12 @@ const Player = () => {
         <div>
           <p>{playerData.chapter}.{playerData.lecture} 
             {playerData.lectureTitle}</p>
-            <button  onClick={()=> markLectureAsCompleted(playerData.lectureId)}
-             className='text=blue-600'>{progressData && progressData.
-              lectureCompleted.includes(playerData.lectureId) ? 'Ukończone' : 'Zaznacz jako zaliczone'}}</button>
+            <button onClick={() => markLectureAsCompleted(playerData.lectureId)}
+             className='text-blue-600'>
+              {progressData && progressData.lectureCompleted.includes(playerData.lectureId) 
+                ? 'Ukończone' 
+                : 'Zaznacz jako zaliczone'}
+            </button>
         </div>
       </div>
       )
