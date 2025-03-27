@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { assets } from '../../assets/assets'
 
-const PasekWyszukiwania = (data) => {
+const SearchingBar = (data) => {
 
   const navigate = useNavigate()
   const [input, setInput] = useState(data ? data : '')
@@ -24,4 +24,4 @@ const PasekWyszukiwania = (data) => {
   )
 }
 
-export default PasekWyszukiwania
+export default SearchingBar
