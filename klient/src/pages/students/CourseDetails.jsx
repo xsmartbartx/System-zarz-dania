@@ -36,30 +36,33 @@ const CourseDetails = () => {
     }
   }
 
-  const enrollCourse = async ()=>{
+  const enrollCourse = async () => {
     try {
-      if(!userData){
-        return toast.warn('Zaluguj się do kursu')
-      }
-      if(isAlreadyEnrolled){
-        return toast.warn('Już wpisany')
-      }
+        if (!userData) {
+            return toast.warn('Zaloguj się do kursu'); // Fixed typo
+        }
+        if (isAlreadyEnrolled) {
+            return toast.warn('Już zapisany'); // Fixed typo
+        }
 
-      const token = await getToken();
+        const token = await getToken();
 
-      const {data} = await axios.post(backendUrl + '/api/user/purchase', {courseId:
-        courseData._id}, {headers: { Autorization: `Bearer ${token}` }})
-      if (data.success) {
-         const {session_url} = data
-        window.location.replace(session_url)
-      }else{
-        toast.error(data.message)
-      }
+        const { data } = await axios.post(
+            backendUrl + '/api/user/purchase',
+            { courseId: courseData._id },
+            { headers: { Authorization: `Bearer ${token}` } } // Fixed spelling of "Authorization"
+        );
 
+        if (data.success) {
+            const { session_url } = data;
+            window.location.replace(session_url);
+        } else {
+            toast.error(data.message);
+        }
     } catch (error) {
-      toast.error(data.message)
+        toast.error(error.response?.data?.message || error.message); // Improved error handling
     }
-  }
+};
 
   useEffect(() => {
     fetchCourseData();
